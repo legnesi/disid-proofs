@@ -1,0 +1,74 @@
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-27 11:38:45
+project setup --topLevelPackage com.disid.restful --projectName "Spring MVC RESTful" --java 8 --packaging JAR
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-05-27 11:38:46
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-27 11:38:50
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-05-27 11:39:19
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-27 11:40:36
+jpa setup --provider HIBERNATE --database H2_IN_MEMORY 
+entity jpa --class ~.model.Category
+field string --fieldName name 
+field string --fieldName description
+entity jpa --class ~.model.Product
+field string --fieldName name 
+field string --fieldName description
+field set --fieldName categories --type ~.model.Category --cardinality MANY_TO_MANY 
+focus --class ~.model.Category
+field set --fieldName products --type ~.model.Product --cardinality MANY_TO_MANY 
+entity jpa --class ~.model.CustomerOrder
+field date --fieldName orderDate --type java.util.Date 
+field date --fieldName shippedDate --type java.util.Date
+field string --fieldName shipAddress
+entity jpa --class ~.model.OrderDetail
+field number --fieldName quantity --type java.lang.Integer
+field reference --fieldName product --type ~.model.Product --cardinality MANY_TO_ONE 
+field reference --fieldName customerOrder --type ~.model.CustomerOrder --cardinality MANY_TO_ONE 
+focus --class ~.model.CustomerOrder
+field set --fieldName details --type ~.model.OrderDetail --cardinality ONE_TO_MANY 
+entity jpa --class Customer
+field string --fieldName firstName 
+field string --fieldName lastName
+field set --fieldName orders --type ~.model.CustomerOrder --cardinality ONE_TO_MANY 
+focus --class ~.model.CustomerOrder
+field reference --fieldName customer --type ~.model.Customer --cardinality MANY_TO_ONE 
+
+repository jpa --all --package ~.repository
+service --all --apiPackage ~.service.api --implPackage ~.service.impl
+web mvc setup 
+web mvc controller --all --package ~.web
+web mvc view setup --type THYMELEAF 
+web mvc controller --all --package ~.web --responseType THYMELEAF 
+embeddable --class ~.model.OrderDetailPK
+equals --class ~.model.OrderDetailPK
+// [failed] field number --fieldName id --type java.lang.Integer
+// [failed] field number --fieldName customerOrderId --type java.lang.Long
+// Add by hand the following properties to the OrderDetailPK class:
+//    private Integer id;
+//
+//    @Column(name = "customerOrderId")
+//    private Long customerOrderId;
+focus --class ~.model.OrderDetail
+field other --fieldName id --type ~.model.OrderDetailPK --force
+// Add the following code to the OrderDetail class updating the customerOrderAttribute:
+//    @ManyToOne
+//    @MapsId("customerOrderId")
+//    @JoinColumn(name = "customerOrderId", referencedColumnName = "id")
+//    private CustomerOrder customerOrder;
+push-in --class ~.web.OrderDetailController --method populateHeaders
+// Add the following code to the OrderDetailController class:
+//public HttpHeaders populateHeaders(Long id) {
+//	// Nothing to do
+//	return null;
+//    }
+//
+//    public HttpHeaders populateHeaders(OrderDetailPK id) {
+//        UriComponents uriComponents = UriComponentsBuilder.fromUriString("/orderdetails/{id}").build();
+//        URI uri = uriComponents.expand(id).encode().toUri();
+//        HttpHeaders responseHeaders = new HttpHeaders();
+//        responseHeaders.setLocation(uri);
+//        return responseHeaders;
+//    }
+ 
+push-in --class ~.web.CustomerController
+web mvc language --code es 
+push-in --class ~.service.api.CustomerService --method delete 
+push-in --class ~.service.impl.CustomerServiceImpl --method delete 
