@@ -1,4 +1,0 @@
-= DISID's Spring MVC RESTful proof of concept
-
-A simple commerce app proof to test the creation of Spring MVC RESTful
-services that allow to manage the main entities as well as the relationships.
