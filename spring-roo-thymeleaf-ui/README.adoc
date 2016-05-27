@@ -1,0 +1,11 @@
+= Spring Roo Thymeleaf UI
+
+Spring Roo application Thymeleaf based.
+
+This proof is built to work best in the latest desktop and mobile browsers,
+meaning older browsers might display differently styled, though fully functional,
+renderings of certain components.
+
+This proof works in latest version Chrome, Firefox and IE8+ browsers.
+
+

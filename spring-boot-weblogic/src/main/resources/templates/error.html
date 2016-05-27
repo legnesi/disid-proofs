@@ -1,19 +1,28 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Getting Started: Error Serving Web Content</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body>
-  <h1>Errors</h1>
-  <hr />
-<!--
-  <div th:object="${salutation}">
-    <ul th:if="${#fields.hasErrors('*')}">
-      <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
-    </ul>
-  </div>
-  <hr />
--->
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Error</title>
+  </head>
+  <body>
+    <header>
+        <h1>Error page</h1>
+    </header>
+    <section data-layout-fragment="content">
+        <h2>Error!</h2>
+		<div>
+			Unexpected error (type=<span data-text="${error}">Bad</span>, status=<span data-text="${status}">500</span>).
+		</div>
+        <hr/>
+		<div data-text="${message}"></div>
+		<hr/>
+		<h2>What's next?</h2>
+		<ul>
+        <li><a href="/" data-th-href="@{/}">Go home</a></li>
+		</ul>
+    </section>
+    <footer>
+        &copy; 2016 DISID
+    </footer> 
+  </body>
 </html>

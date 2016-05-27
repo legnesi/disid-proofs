@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<link data-th-remove="all" rel="icon" href="../../static/public/img/favicon.ico" />
+
+<title>Create myEntity</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" type="text/css"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css"></link>
+
+</head>
+<body>
+
+  <!--INICIO CONTENEDOR-->
+  <div class="container bg-container">
+    <!--INICIO CONTENIDO-->
+    <section data-layout-fragment="content">
+      <div class="container-fluid content">
+        <!--
+          Sólo el contenido interno del tag "section" se incluirá dentro de la
+          plantilla, en el apartado "content"
+        -->
+
+        <h1>Create</h1>
+
+        <!--INICIO FORMULARIO-->
+        <form class="form-horizontal" method="POST"
+          data-th-object="${myEntity}" data-th-action="@{/myEntity}">
+
+          <div class="form-group"
+            data-th-classappend="${#fields.hasErrors('calendar')}? 'has-error has-feedback'">
+            <label for="calendar" class="col-md-3 control-label">Calendar</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control datetimepicker"
+                data-th-field="*{calendar}"/> <span data-th-text="*{{calendar}}"></span>
+            </div>
+          </div>
+
+          <div class="form-group"
+            data-th-classappend="${#fields.hasErrors('date')}? 'has-error has-feedback'">
+            <label for="date" class="col-md-3 control-label">Date</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control datetimepicker"
+                data-th-field="*{date}"/> <span data-th-text="*{{date}}"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group"
+            data-th-classappend="${#fields.hasErrors('aDouble')}? 'has-error has-feedback'">
+            <label for="date" class="col-md-3 control-label">aDouble</label>
+            <div class="col-md-3">
+              <input type="text" class="form-control"
+                data-th-field="*{aDouble}"/> <span data-th-text="*{{aDouble}}"></span>
+            </div>
+          </div>
+
+          <!-- BOTONES FORMULARIO -->
+          <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+              <button type="reset" class="btn btn-default"
+                onclick="location.href='list.html'"
+                data-th-onclick="'location.href=\'' + @{/myEntiy} + '\''">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+          </div>
+        </form>
+        <!--FIN FORMULARIO-->
+      </div>
+      <!--FIN CONTENIDO-->
+    </section>
+
+  </div>
+  <!--FIN CONTENEDOR-->
+
+
+  <!-- JavaScript
+================================================== -->
+  <!-- Ubicado al final del documento para que las páginas carguen más rápido -->
+  <!-- JQuery -->
+  <script type="text/javascript" charset="utf8"
+    src="https://code.jquery.com/jquery-1.12.3.js"></script>
+
+  <!-- Bootstrap -->
+  <script type="text/javascript"
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>
+
+</body>
+</html>

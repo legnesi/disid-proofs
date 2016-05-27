@@ -1,0 +1,6 @@
+test-db.properties
+test-db.script
+/target/
+/.settings/
+.classpath
+.project

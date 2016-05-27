@@ -1,0 +1,25 @@
+= Spring Boot Application - Exception Handling
+
+Usually, if exceptions are not managed, Spring Boot applications will return `/error` page by default including some information about handled error. If `/error` page has not been included, `whitelabel` page will be displayed.
+
+These proofs of concept are based on simple petclinic application and have been generated using *Spring Roo 2.0.0.M2*. 
+
+* *ControllerAdvice*: This proof of concept shows how to use `@ControllerAdvice` annotation to handle `EntityResultNotFoundException` that has been thrown on the Spring Formatter `OwnerFormatter` and how to return `/errors/404` html view.
+
+* *SimpleMappingExceptionResolver*: This proof of concept shows how to use `SimpleMappingExceptionResolver` bean to handle `EntityResultNotFoundException` that has been thrown on the Spring Formatter `OwnerFormatter` and how to return `/errors/404` html view.
+
+== Setting up the build environment
+
+. Clone this project to your local machine
+. Import ControllerAdvice or SimpleMappingExcptionResolver project as "External Maven project" in STS 3.7.3 
+
+== Execute Project
+
+. Use STS Spring Boot tools to run example
+. Open http://localhost:8080/owners/1
+. `/errors/404` html page should appear
+
+
+
+
+

@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,19 +42,28 @@ class AccountController {
     /**
      * See section `Run Tests` at README.adoc to learn how to test.
      */
-    @RequestMapping(value="/accounts", produces="application/json")
+    @RequestMapping(value="/accounts/{number}", produces="application/json")
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody Account getAccount(@RequestParam String number) {
+    public @ResponseBody Account getAccount(@PathVariable String number) {
         Account account = accountService.findOne(number);
         LOG.info("Account found: ".concat(account.toString()));
         return account;
     }
 
     /**
+     * Show index
+     */
+    @RequestMapping("/")
+    public String index() {
+        // Return the view to use for rendering the response
+        return "index";
+    }
+
+    /**
      * See section `Run Tests` at README.adoc to learn how to test.
      */
-    @RequestMapping(value="/accounts")
-    public String getAccount(@RequestParam String number, Model model) {
+    @RequestMapping(value="/accounts/{number}")
+    public String show(@PathVariable String number, Model model) {
         Account account = accountService.findOne(number);
 
         model.addAttribute( account );

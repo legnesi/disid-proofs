@@ -1,0 +1,38 @@
+= Spring Boot Weblogic 12c
+
+Proof of concept to test Spring Boot app deployment in Weblogic 12.2.1. with TracEE
+
+This PoC solves the issue 
+http://stackoverflow.com/questions/34525967/spring-boot-exception-could-not-open-servletcontext-resource-web-inf-dispatch[Spring Boot exception: Could not open ServletContext resource]
+and make an example of use of TracEE
+
+== Setting up the build environment
+ EX
+Import this project as "External Maven project" in STS 3.7.
+
+== Run Tests
+
+Web integration tests have been developed for testing purposes, take a look to
+_src/test/java_.
+
+To execute these tests just run JUnit from the STS or `mvn test` from
+your favorite shell.
+
+== Test Case
+
+* The property `dummy.type` is in _src/main/resources/application.properties_ 
+
+* Set the JNDI attribute `java:comp/env/DUMMY_TYPE`, via an `env-entry` in the
+  _web.xml_ file.
+
+=== Expected results
+
+The attribute `type` of the returned `Account` should have a value
+equal to the value of the JNDI attribute `java:comp/env/DUMMY_TYPE`
+
+Show in log messages the invocation id for each call:
+
+* In testHome() calls twice the method getAccount() and you can see that each one has a different 'invocationId' value.
+
+* In testHome2() calls the method getAccount2() and this puts a variable inside 'backend' before to call the findOne() method
+

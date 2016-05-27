@@ -1,0 +1,57 @@
+= FreeMarker template engine example
+
+Proof of concept that shows how to generate final .html view using FreeMarker
+template engine as independent library.
+
+== Structure
+
+This proof has the following structure:
+
+```
+.
+├── pom.xml
+├── README.adoc
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── proof
+    │   │       ├── FieldItem.java
+    │   │       └── Main.java
+    │   └── resources
+    │       └── proof
+    │           └── templates
+    │               ├── lib
+    │               │   ├── banner.ftl
+    │               │   ├── body.ftl
+    │               │   ├── fields
+    │               │   │   ├── checkbox.ftl
+    │               │   │   └── display.ftl
+    │               │   ├── footer.ftl
+    │               │   ├── header.ftl
+    │               │   ├── head.ftl
+    │               │   ├── menu.ftl
+    │               │   ├── page.ftl
+    │               │   └── session.ftl
+    │               └── show.ftl
+    └── test
+        ├── java
+        └── resources
+```
+
+* *Main.java* contains the main method where *show.html* view is generated
+  using FreeMarker template engines.
+
+* *FieldItem.java* is a class that defines a field on the generated view.
+
+* *src/main/resources/proof/templates* contains all FreeMarker templates and
+  macros with *.ftl* extension. These templates and macros will be used to
+  generate the final content.
+
+== Execution
+
+Follow these next steps to execute application to generate *show.html* view
+based on the templates contents.
+
+1. Checkout this project
+2. Execute ```mvn clean compile exec:java -D exec.mainClass=proof.Main```
+3. Check that *show.html* view has been generated inside the project folder.
