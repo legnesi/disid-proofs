@@ -19,7 +19,7 @@ import com.disid.restful.service.api.CustomerOrderService;
 import com.disid.restful.service.api.CustomerService;
 
 @Controller
-@RequestMapping("/customers/{customer}/customerorders")
+@RequestMapping("/customers/{customer}/orders")
 public class CustomersItemOrdersController {
 
     public CustomerOrderService customerOrderService;
