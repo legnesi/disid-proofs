@@ -153,7 +153,7 @@
   <div data-layout-fragment="javascript"> 
    <!-- Moment.js --> 
    <script data-th-src="@{/public/js/moment.js}" src="../../static/public/js/moment.js"></script> 
-   <script data-th-src="@{/public/js/moment-} + ${application_locale} + .js" src="../../static/public/js/moment-en.js"></script> 
+   <script data-th-src="@{/public/js/moment-} + ${#locale.language} + .js" src="../../static/public/js/moment-en.js"></script> 
    <!-- Select2 --> 
    <script src="../../static/public/js/select2.full.js" data-th-src="@{/public/js/select2.full.js}"></script> 
    <script src="../../static/public/js/select2.full-es.js" data-th-src="@{/public/js/select2.full-es.js}"></script> 

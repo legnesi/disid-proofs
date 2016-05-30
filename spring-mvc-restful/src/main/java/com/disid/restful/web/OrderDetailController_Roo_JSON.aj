@@ -4,10 +4,8 @@
 package com.disid.restful.web;
 
 import com.disid.restful.model.Category;
-import com.disid.restful.model.Customer;
 import com.disid.restful.model.CustomerOrder;
 import com.disid.restful.model.OrderDetail;
-import com.disid.restful.model.Product;
 import com.disid.restful.web.OrderDetailController;
 import java.lang.SuppressWarnings;
 import java.net.URI;

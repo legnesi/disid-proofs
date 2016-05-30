@@ -49,7 +49,7 @@ public class CustomersItemController {
     }
 
     @RequestMapping(value = "/edit-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String editForm(@ModelAttribute("customer") Customer customer, Model model) {
+    public String editForm(@ModelAttribute Customer customer, Model model) {
         return "customers/edit";
     }
 

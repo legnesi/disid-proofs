@@ -72,3 +72,7 @@ push-in --class ~.web.CustomerController
 web mvc language --code es 
 push-in --class ~.service.api.CustomerService --method delete 
 push-in --class ~.service.impl.CustomerServiceImpl --method delete 
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-05-27 14:29:31
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-30 11:15:23
+push-in --class ~.web.CategoryController
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-05-30 16:30:05

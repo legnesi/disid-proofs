@@ -101,10 +101,10 @@ privileged aspect ProductController_Roo_Thymeleaf {
     }
     
     public void ProductController.populateForm(Model model) {
-        populateFormats(model);
+        populateFomats(model);
     }
     
-    public void ProductController.populateFormats(Model model) {
+    public void ProductController.populateFomats(Model model) {
         model.addAttribute("application_locale", LocaleContextHolder.getLocale().getLanguage());
     }
     

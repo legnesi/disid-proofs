@@ -10,7 +10,6 @@ import com.disid.restful.model.OrderDetail;
 import com.disid.restful.repository.GlobalSearch;
 import com.disid.restful.web.CustomerOrderController;
 import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -102,14 +101,14 @@ privileged aspect CustomerOrderController_Roo_Thymeleaf {
         return "customerorders/show";
     }
     
-    @RequestMapping(value = "/{id}/orderdetails/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id_}/orderdetails/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Page<OrderDetail> CustomerOrderController.listOrderDetail(@PathVariable("id") CustomerOrder id, GlobalSearch search, Pageable pageable) {
         Page<OrderDetail> orderDetail = orderDetailService.findAllByCustomerOrder(id, search, pageable);
         return orderDetail;
     }
     
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}/orderdetails/", produces = "application/vnd.datatables+json")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id_}/orderdetails/", produces = "application/vnd.datatables+json")
     @ResponseBody
     public DatatablesData<OrderDetail> CustomerOrderController.listOrderDetail(@PathVariable("id") CustomerOrder id, GlobalSearch search, Pageable pageable, @RequestParam("draw") Integer draw) {
         Page<OrderDetail> orderDetail = listOrderDetail(id, search, pageable);
@@ -118,13 +117,13 @@ privileged aspect CustomerOrderController_Roo_Thymeleaf {
     }
     
     public void CustomerOrderController.populateForm(Model model) {
-        populateFormats(model);
+        populateFomats(model);
     }
     
-    public void CustomerOrderController.populateFormats(Model model) {
+    public void CustomerOrderController.populateFomats(Model model) {
         model.addAttribute("application_locale", LocaleContextHolder.getLocale().getLanguage());
-        model.addAttribute("orderDate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        model.addAttribute("shippedDate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        model.addAttribute("orderDate_date_format", "dd/MM/yyyy");
+        model.addAttribute("shippedDate_date_format", "dd/MM/yyyy");
     }
     
 }
