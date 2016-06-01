@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.petclinic.springsource.com/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="PetClinicService" targetNamespace="http://ws.petclinic.springsource.com/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://ws.petclinic.springsource.com/" elementFormDefault="unqualified"
+			targetNamespace="http://ws.petclinic.springsource.com/" version="1.0">
+			<xs:element name="getAllOwners" type="tns:getAllOwners" />
+			<xs:element name="getAllOwnersResponse" type="tns:getAllOwnersResponse" />
+			<xs:element name="getAllPets" type="tns:getAllPets" />
+			<xs:element name="getAllPetsResponse" type="tns:getAllPetsResponse" />
+			<xs:complexType name="getAllPets">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="getAllPetsResponse">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="return" type="xs:anyType" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="getAllOwners">
+				<xs:sequence />
+			</xs:complexType>
+			<xs:complexType name="getAllOwnersResponse">
+				<xs:sequence>
+					<xs:element form="qualified" maxOccurs="unbounded"
+						minOccurs="0" name="return" type="xs:anyType" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getAllOwnersResponse">
+		<wsdl:part element="tns:getAllOwnersResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllPets">
+		<wsdl:part element="tns:getAllPets" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllPetsResponse">
+		<wsdl:part element="tns:getAllPetsResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllOwners">
+		<wsdl:part element="tns:getAllOwners" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="PetClinicServicePortType">
+		<wsdl:operation name="getAllPets">
+			<wsdl:input message="tns:getAllPets" name="getAllPets">
+			</wsdl:input>
+			<wsdl:output message="tns:getAllPetsResponse" name="getAllPetsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAllOwners">
+			<wsdl:input message="tns:getAllOwners" name="getAllOwners">
+			</wsdl:input>
+			<wsdl:output message="tns:getAllOwnersResponse" name="getAllOwnersResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PetClinicServiceSoapBinding" type="tns:PetClinicServicePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getAllPets">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAllPets">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllPetsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAllOwners">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAllOwners">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllOwnersResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PetClinicService">
+		<wsdl:port binding="tns:PetClinicServiceSoapBinding" name="PetClinicServicePortType">
+			<soap:address
+				location="http://localhost:8080/services/PetClinicService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
