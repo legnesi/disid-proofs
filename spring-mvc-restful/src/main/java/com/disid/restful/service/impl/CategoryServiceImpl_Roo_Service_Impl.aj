@@ -9,7 +9,6 @@ import com.disid.restful.repository.GlobalSearch;
 import com.disid.restful.service.api.CategoryService;
 import com.disid.restful.service.impl.CategoryServiceImpl;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,11 +24,6 @@ privileged aspect CategoryServiceImpl_Roo_Service_Impl {
     
     public CategoryRepository CategoryServiceImpl.categoryRepository;
     
-    @Autowired
-    public CategoryServiceImpl.new(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
-
     @Transactional(readOnly = false)
     public Category CategoryServiceImpl.save(Category entity) {
         return categoryRepository.save(entity);

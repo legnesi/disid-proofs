@@ -1,5 +1,7 @@
 package com.disid.restful.service.api;
 
+import java.util.Set;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.roo.addon.layers.service.annotations.RooService;
@@ -16,4 +18,6 @@ public interface ProductService {
     Page<Product> findAllByCategory(Category category, GlobalSearch search, Pageable pageable);
 
     long countByCategoriesContains(Category category);
+
+    Set<Product> findByIdIn(Long[] productIds);
 }

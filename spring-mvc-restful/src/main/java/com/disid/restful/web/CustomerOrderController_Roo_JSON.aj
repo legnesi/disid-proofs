@@ -3,7 +3,6 @@
 
 package com.disid.restful.web;
 
-import com.disid.restful.model.Category;
 import com.disid.restful.model.CustomerOrder;
 import com.disid.restful.web.CustomerOrderController;
 import java.lang.SuppressWarnings;

@@ -76,3 +76,5 @@ push-in --class ~.service.impl.CustomerServiceImpl --method delete
 // Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-30 11:15:23
 push-in --class ~.web.CategoryController
 // Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-05-30 16:30:05
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-31 15:10:47
+hint

@@ -1,82 +1,66 @@
 [
     {
         "name":"Ice",
-        "description":"Valyrian steel greatsword and an heirloom of House Stark, who had wielded it for generations. It was used both in war and on ceremonial occasions by the Lord of Winterfell.",
-        "categories":[{"id":"1"}]
+        "description":"Valyrian steel greatsword and an heirloom of House Stark, who had wielded it for generations. It was used both in war and on ceremonial occasions by the Lord of Winterfell."
     },
     {
         "name":"Dawn",
-        "description":"The ancestral sword of House Dayne. The sword's bearer is a knight of the family, who bears the title of the Sword of the Morning",
-        "categories":[{"id":"1"}]
+        "description":"The ancestral sword of House Dayne. The sword's bearer is a knight of the family, who bears the title of the Sword of the Morning"
     },
     {
         "name":"Needle",
-        "description":"Needle is a thin sword wielded by Arya Stark. It was given to her by Jon Snow, who had it made by Mikken, the blacksmith of Winterfell.",
-        "categories":[{"id":"1"}]
+        "description":"Needle is a thin sword wielded by Arya Stark. It was given to her by Jon Snow, who had it made by Mikken, the blacksmith of Winterfell."
     },
     {
         "name":"Widow's Wail",
-        "description":"Widow's Wail is the second Valyrian steel blade made from Ice, the blade of House Stark.",
-        "categories":[{"id":"1"}]
+        "description":"Widow's Wail is the second Valyrian steel blade made from Ice, the blade of House Stark."
     },
     {
         "name":"Forrester greatsword",
-        "description":"The Forrester greatsword is a weapon passed down through the Lords of House Forrester. It is incredibly valuable and coveted. ",
-        "categories":[{"id":"1"}]
+        "description":"The Forrester greatsword is a weapon passed down through the Lords of House Forrester. It is incredibly valuable and coveted. "
     },
     {
         "name":"Wildfire",
-        "description":"Wildfire is a dangerous liquid which is created and controlled by the Alchemists' Guild, an ancient society of learned men boasting arcane knowledge now based in the city of King's Landing",
-        "categories":[{"id":"1"}]
+        "description":"Wildfire is a dangerous liquid which is created and controlled by the Alchemists' Guild, an ancient society of learned men boasting arcane knowledge now based in the city of King's Landing"
     },
     {
         "name":"Dragonglass",
-        "description":"Dragonglass is a common name in Westeros for the substance known as obsidian, a form of volcanic glass. Along with Valyrian steel, it is one of the two known substances capable of killing White Walkers.",
-        "categories":[{"id":"1"}]
+        "description":"Dragonglass is a common name in Westeros for the substance known as obsidian, a form of volcanic glass. Along with Valyrian steel, it is one of the two known substances capable of killing White Walkers."
     },
     {
         "name":"Arakh",
-        "description":"The arakh is the standard weapon used by Dothraki warriors.",
-        "categories":[{"id":"1"}]
+        "description":"The arakh is the standard weapon used by Dothraki warriors."
     },
     {
         "name":"Manticore",
-        "description":"Manticores are highly aggressive and extremely venomous scorpion-like insects from the continent of Essos. ",
-        "categories":[{"id":"1"},{"id":"3"}]
+        "description":"Manticores are highly aggressive and extremely venomous scorpion-like insects from the continent of Essos. "
     },
     {
         "name":"Fury",
-        "description":"The Fury is the flagship of Stannis Baratheon's fleet.",
-        "categories":[{"id":"1"}]
+        "description":"The Fury is the flagship of Stannis Baratheon's fleet."
     },
     {
         "name":"Black Betha",
-        "description":"The Black Betha is a ship captained by Ser Davos Seaworth. Its first mate is Matthos Seaworth, Ser Davos's son.",
-        "categories":[{"id":"1"}]
+        "description":"The Black Betha is a ship captained by Ser Davos Seaworth. Its first mate is Matthos Seaworth, Ser Davos's son."
     },
     {
         "name":"The Hound's helm",
-        "description":"One of the most vicious warriors in Westeros and former bodyguard to King Joffrey, the Hound abandoned his master and is currently at large in the Riverlands.",
-        "categories":[{"id":"1"}]
+        "description":"One of the most vicious warriors in Westeros and former bodyguard to King Joffrey, the Hound abandoned his master and is currently at large in the Riverlands."
     },
     {
         "name":"Loras Tyrell's helm",
-        "description":"The handsome young Ser Loras was the secret lover of Renly Baratheon, for whom he served as Kingsguard. After Renly’s murder, Loras was persuaded to side with the Lannisters and helped them defend King’s Landing",
-        "categories":[{"id":"1"}]
+        "description":"The handsome young Ser Loras was the secret lover of Renly Baratheon, for whom he served as Kingsguard. After Renly’s murder, Loras was persuaded to side with the Lannisters and helped them defend King’s Landing"
     },
     {
         "name":"Horse",
-        "description":"Horses are four-legged mammals which have been domesticated throughout the Known World for use as beasts of burden, mounts in war, or simply for transportation.",
-        "categories":[{"id":"1"},{"id":"2"},{"id":"3"}]
+        "description":"Horses are four-legged mammals which have been domesticated throughout the Known World for use as beasts of burden, mounts in war, or simply for transportation."
     },
     {
         "name":"Direwolf",
-        "description":"Direwolves are an unusually large and intelligent species of wolf. A grey direwolf on a white field is the sigil of House Stark.",
-        "categories":[{"id":"1"},{"id":"3"}]
+        "description":"Direwolves are an unusually large and intelligent species of wolf. A grey direwolf on a white field is the sigil of House Stark."
     },
     {
         "name":"Dragon",
-        "description":"Dragons are massive, flying reptiles which can breathe fire onto their enemies, rumored to have a strong connection to magic, later 'proven' true when magic begins to return to the world after the birth of the first three in over two hundred years.",
-        "categories":[{"id":"1"},{"id":"3"}]
+        "description":"Dragons are massive, flying reptiles which can breathe fire onto their enemies, rumored to have a strong connection to magic, later 'proven' true when magic begins to return to the world after the birth of the first three in over two hundred years."
     }
 ]

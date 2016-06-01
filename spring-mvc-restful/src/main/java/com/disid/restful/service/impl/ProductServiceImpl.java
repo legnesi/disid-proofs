@@ -1,8 +1,11 @@
 package com.disid.restful.service.impl;
 
+import java.util.Set;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.roo.addon.layers.service.annotations.RooServiceImpl;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.disid.restful.model.Category;
 import com.disid.restful.model.Product;
@@ -12,6 +15,7 @@ import com.disid.restful.service.api.ProductService;
 @RooServiceImpl(service = ProductService.class)
 public class ProductServiceImpl {
 
+    @Transactional
     public void delete(Product product) {
 	productRepository.delete(product);
     }
@@ -23,4 +27,9 @@ public class ProductServiceImpl {
     public long countByCategoriesContains(Category category) {
 	return productRepository.countByCategoriesContains(category);
     }
+
+    public Set<Product> findByIdIn(Long[] productIds) {
+	return productRepository.findByIdIn(productIds);
+    }
+
 }
