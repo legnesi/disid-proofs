@@ -112,8 +112,7 @@
        </tbody> 
       </table> 
      </div> 
-     <!--END TABLE--> 
-     <hr> 
+     <!--END TABLE-->
       <ul class="nav nav-tabs"> 
        <li class="active"><a data-toggle="tab" href="#detail-Category">Category</a></li> 
       </ul> 
@@ -127,8 +126,8 @@
           </caption> 
           <thead> 
            <tr> 
-            <th data-th-text="#{label_category_name}">name</th> 
-            <th data-th-text="#{label_category_description}">description</th> 
+            <th data-th-text="#{label_product_name}">name</th> 
+            <th data-th-text="#{label_product_description}">description</th> 
             <th data-th-text="#{label_tools}">Tools</th> 
            </tr> 
           </thead> 
@@ -144,12 +143,11 @@
         <!--END TABLE--> 
        </div> 
       </div> 
-      <div class="clearfix"> 
-       <div class="pull-left"> 
-        <a href="../index.html" class="btn btn-default" data-th-href="@{/}"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span data-th-text="#{label_back}">Back</span> </a> 
-       </div> 
+     <div class="clearfix"> 
+      <div class="pull-left"> 
+       <a href="../index.html" class="btn btn-default" data-th-href="@{/}"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span data-th-text="#{label_back}">Back</span> </a> 
       </div> 
-     </hr>
+     </div> 
     </div> 
     <!--END CONTENT--> 
     <!-- MODAL --> 
@@ -198,7 +196,9 @@
    <script type="text/javascript" charset="utf8" src="../../static/public/js/datatables-defaults.js" data-th-src="@{/public/js/datatables-defaults.js}"></script> 
    <script type="text/javascript" charset="utf8" src="../../static/public/js/datatables-defaults-en.js" data-th-src="@{/public/js/datatables-defaults-en.js}"></script> 
    <!-- Datatables page configs --> 
+   <script type="text/javascript" data-th-inline="javascript"> jQuery(document).ready( function () { var ProductTable = jQuery('#ProductTable').DataTable({ 'ajax': { 'url': [[@{/products/}]] }, 'columns': [ { 'data': 'name' }, { 'data': 'description' }, { 'data': 'id', 'orderable': false, 'searchable': false, 'render': function ( data, type, full, meta ) { return '<a role="button" class="btn-accion ver" href="/products/' + data + '" data-th-text="#{label_show}">Show</a>' + '<a role="button" class="btn-accion modificar" href="/products/' + data + '/edit-form" data-th-text="#{label_edit}">Edit</a>' + '<a role="button" class="btn-accion eliminar" data-th-text="#{label_delete}" onclick="javascript:jQuery.deleteProduct(' + data + ')"></a>' } } ] }); jQuery.extend({ 'deleteProduct': function(id) { jQuery.ajax({ url: '/products/'+id, type: 'DELETE', success: function(result) { jQuery('#deleteProductModalBody').empty(); jQuery('#deleteProductModalBody').append('<p data-th-text="|#{info_deleted_items_number(1)}|">1 removed item</p>'); jQuery('#deleteProductModal').modal(); /** Refresh Datatables */ ProductTable.ajax.reload(); }, error: function(jqXHR) { /** Getting error code */ var message = ''; /** CONFLICT */ if (jqXHR.status == 409) { message = '<p data-th-text="|#{info_no_deleted_item}|">0 items has been deleted.</p>'; } /** NOT_FOUND */ if (jqXHR.status == 404 ) { message = '<p data-th-text="|#{info_deleted_item_problem} #{info_no_exist_item}|">Error deleting selected item.</p>'; } jQuery('#deleteProductModalBody').empty(); jQuery('#deleteProductModalBody').append(message); jQuery('#deleteProductModal').modal(); } }); } }); }); </script> 
    <script type="text/javascript" data-th-inline="javascript"> jQuery(document).ready( function () { var ProductTable = jQuery('#ProductTable').DataTable({ 'ajax': { 'url': [[@{/products/}]] }, 'columns': [ { 'data': 'name' }, { 'data': 'description' }, { 'data': 'id', 'orderable': false, 'searchable': false, 'render': function ( data, type, full, meta ) { return '<a role="button" class="btn-accion ver" href="/products/' + data + '" data-th-text="#{label_show}">Show</a>' + '<a role="button" class="btn-accion modificar" href="/products/' + data + '/edit-form" data-th-text="#{label_edit}">Edit</a>' + '<a role="button" class="btn-accion eliminar" data-th-text="#{label_delete}" onclick="javascript:jQuery.deleteProduct(' + data + ')"></a>' } } ] }); jQuery.extend({ 'deleteProduct': function(id) { jQuery.ajax({ url: '/products/'+id, type: 'DELETE', success: function(result) { jQuery('#deleteProductModalBody').empty(); jQuery('#deleteProductModalBody').append('<p data-th-text="|#{info_deleted_items_number(1)}|">1 removed item</p>'); jQuery('#deleteProductModal').modal(); /** Refresh Datatables */ ProductTable.ajax.reload(); }, error: function(jqXHR) { /** Getting error code */ var message = ''; /** CONFLICT */ if (jqXHR.status == 409) { message = '<p data-th-text="|#{info_no_deleted_item}|">0 items has been deleted.</p>'; } /** NOT_FOUND */ if (jqXHR.status == 404 ) { message = '<p data-th-text="|#{info_deleted_item_problem} #{info_no_exist_item}|">Error deleting selected item.</p>'; } jQuery('#deleteProductModalBody').empty(); jQuery('#deleteProductModalBody').append(message); jQuery('#deleteProductModal').modal(); } }); } }); var CategoryTable = jQuery('#CategoryTable').DataTable({ 'buttons' : [ { 'extend' : 'colvis', 'className' : 'btn-accion' }, { 'extend' : 'pageLength', 'className' : 'btn-accion' } ], 'columns': [ { 'data': 'name' }, { 'data': 'description' }, { 'data': 'id', 'orderable': false, 'searchable': false, 'render': function ( data, type, full, meta ) { return ''; } } ] }); jQuery.extend({ 'currentProductId': undefined, 'CategoryBaseUrl': function() { if(jQuery.currentProductId) { return [[@{/products/}]] + jQuery.currentProductId + '/categories/'; } return undefined; }, 'createCategoryUrl': function() { if(jQuery.currentProductId) { return jQuery.CategoryBaseUrl() + jQuery.createUri + '/'; } return undefined; }, 'updateCategoryUrl': function(CategoryId) { if(jQuery.currentProductId) { return jQuery.CategoryBaseUrl() + CategoryId + '/'+ jQuery.editUri + '/'; } return undefined; }, 'deleteCategoryUrl': function(CategoryId) { if(jQuery.currentProductId) { return jQuery.CategoryBaseUrl() + CategoryId + '/'+ jQuery.deleteUri + '/'; } return undefined; } }); ProductTable.on( 'select', function ( e, dt, type, indexes ) { if ( type === 'row' ) { var newProductId = ProductTable.rows( indexes ).ids()[0]; if (jQuery.currentProductId != newProductId) { jQuery.currentProductId = newProductId; var urlCategory = jQuery.CategoryBaseUrl(); CategoryTable.ajax.url( urlCategory ).load(); } } }); }); </script> 
+  
   </div> 
   <!-- Application --> 
   <script type="text/javascript" src="../../static/public/js/main.js" data-th-remove="all"></script> 

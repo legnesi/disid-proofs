@@ -1,0 +1,81 @@
+[
+    {
+        "Id": "1",
+        "categories":[{"id":"1"}]
+    },
+    {2
+        "name":"Dawn",
+        "description":"The ancestral sword of House Dayne. The sword's bearer is a knight of the family, who bears the title of the Sword of the Morning",
+        "categories":[{"id":"1"}]
+    },
+    {3
+        "name":"Needle",
+        "description":"Needle is a thin sword wielded by Arya Stark. It was given to her by Jon Snow, who had it made by Mikken, the blacksmith of Winterfell.",
+        "categories":[{"id":"1"}]
+    },
+    {4
+        "name":"Widow's Wail",
+        "description":"Widow's Wail is the second Valyrian steel blade made from Ice, the blade of House Stark.",
+        "categories":[{"id":"1"}]
+    },
+    {5
+        "name":"Forrester greatsword",
+        "description":"The Forrester greatsword is a weapon passed down through the Lords of House Forrester. It is incredibly valuable and coveted. ",
+        "categories":[{"id":"1"}]
+    },
+    {6
+        "name":"Wildfire",
+        "description":"Wildfire is a dangerous liquid which is created and controlled by the Alchemists' Guild, an ancient society of learned men boasting arcane knowledge now based in the city of King's Landing",
+        "categories":[{"id":"1"}]
+    },
+    {7
+        "name":"Dragonglass",
+        "description":"Dragonglass is a common name in Westeros for the substance known as obsidian, a form of volcanic glass. Along with Valyrian steel, it is one of the two known substances capable of killing White Walkers.",
+        "categories":[{"id":"1"}]
+    },
+    {8
+        "name":"Arakh",
+        "description":"The arakh is the standard weapon used by Dothraki warriors.",
+        "categories":[{"id":"1"}]
+    },
+    {9
+        "name":"Manticore",
+        "description":"Manticores are highly aggressive and extremely venomous scorpion-like insects from the continent of Essos. ",
+        "categories":[{"id":"1"},{"id":"3"}]
+    },
+    {10
+        "name":"Fury",
+        "description":"The Fury is the flagship of Stannis Baratheon's fleet.",
+        "categories":[{"id":"1"}]
+    },
+    {11
+        "name":"Black Betha",
+        "description":"The Black Betha is a ship captained by Ser Davos Seaworth. Its first mate is Matthos Seaworth, Ser Davos's son.",
+        "categories":[{"id":"1"}]
+    },
+    {12
+        "name":"The Hound's helm",
+        "description":"One of the most vicious warriors in Westeros and former bodyguard to King Joffrey, the Hound abandoned his master and is currently at large in the Riverlands.",
+        "categories":[{"id":"1"}]
+    },
+    {13
+        "name":"Loras Tyrell's helm",
+        "description":"The handsome young Ser Loras was the secret lover of Renly Baratheon, for whom he served as Kingsguard. After Renly’s murder, Loras was persuaded to side with the Lannisters and helped them defend King’s Landing",
+        "categories":[{"id":"1"}]
+    },
+    {14
+        "name":"Horse",
+        "description":"Horses are four-legged mammals which have been domesticated throughout the Known World for use as beasts of burden, mounts in war, or simply for transportation.",
+        "categories":[{"id":"1"},{"id":"2"},{"id":"3"}]
+    },
+    {15
+        "name":"Direwolf",
+        "description":"Direwolves are an unusually large and intelligent species of wolf. A grey direwolf on a white field is the sigil of House Stark.",
+        "categories":[{"id":"1"},{"id":"3"}]
+    },
+    {16
+        "name":"Dragon",
+        "description":"Dragons are massive, flying reptiles which can breathe fire onto their enemies, rumored to have a strong connection to magic, later 'proven' true when magic begins to return to the world after the birth of the first three in over two hundred years.",
+        "categories":[{"id":"1"},{"id":"3"}]
+    }
+]

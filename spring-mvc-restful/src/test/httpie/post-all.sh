@@ -8,4 +8,5 @@
 
 ./post-n-products.sh 
 
-#./post-n-category-products.sh
+./post-n-category-item-products.sh
+
