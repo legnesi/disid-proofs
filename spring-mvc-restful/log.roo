@@ -11,9 +11,10 @@ field string --fieldName description
 entity jpa --class ~.model.Product
 field string --fieldName name 
 field string --fieldName description
-field set --fieldName categories --type ~.model.Category --cardinality MANY_TO_MANY 
 focus --class ~.model.Category
 field set --fieldName products --type ~.model.Product --cardinality MANY_TO_MANY 
+focus --class ~.model.Product
+field set --fieldName categories --type ~.model.Category --cardinality MANY_TO_MANY --mappedBy products 
 entity jpa --class ~.model.CustomerOrder
 field date --fieldName orderDate --type java.util.Date 
 field date --fieldName shippedDate --type java.util.Date
@@ -78,3 +79,5 @@ push-in --class ~.web.CategoryController
 // Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-05-30 16:30:05
 // Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-05-31 15:10:47
 hint
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-06-01 06:14:21
+push-in --class ~.web.MainController

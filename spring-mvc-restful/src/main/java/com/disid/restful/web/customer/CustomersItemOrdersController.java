@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,6 +53,24 @@ public class CustomersItemOrdersController {
 	Page<CustomerOrder> customerOrder = listCustomerOrder(customer, search, pageable);
 	long allAvailableCustomerOrderDetails = customerOrderService.countByCustomerId(customer.getId());
         return new DatatablesData<CustomerOrder>(customerOrder, allAvailableCustomerOrderDetails, draw);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Customer setOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
+	return customerService.setOrders(customer, orders);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Customer addOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
+	return customerService.addOrders(customer, orders);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Customer deleteOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
+	return customerService.deleteOrders(customer, orders);
     }
 
 }

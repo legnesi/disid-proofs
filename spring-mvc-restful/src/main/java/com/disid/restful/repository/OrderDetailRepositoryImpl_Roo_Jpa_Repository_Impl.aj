@@ -64,11 +64,11 @@ privileged aspect OrderDetailRepositoryImpl_Roo_Jpa_Repository_Impl {
         return new PageImpl<OrderDetail>(results, pageable, totalFound);
     }
     
-    public Page<OrderDetail> OrderDetailRepositoryImpl.findAllByCustomerOrder(CustomerOrder customerOrderField, GlobalSearch globalSearch, Pageable pageable) {
+    public Page<OrderDetail> OrderDetailRepositoryImpl.findAllByProduct(Product productField, GlobalSearch globalSearch, Pageable pageable) {
         NumberPath<Long> idOrderDetail = new NumberPath<Long>(Long.class, "id_");
         QOrderDetail orderDetail = QOrderDetail.orderDetail;
         JPQLQuery query = getQueryFrom(orderDetail);
-        BooleanBuilder where = new BooleanBuilder(orderDetail.customerOrder.eq(customerOrderField));
+        BooleanBuilder where = new BooleanBuilder(orderDetail.product.eq(productField));
 
         if (globalSearch != null) {
             String txt = globalSearch.getText();
@@ -100,11 +100,11 @@ privileged aspect OrderDetailRepositoryImpl_Roo_Jpa_Repository_Impl {
         return new PageImpl<OrderDetail>(results, pageable, totalFound);
     }
     
-    public Page<OrderDetail> OrderDetailRepositoryImpl.findAllByProduct(Product productField, GlobalSearch globalSearch, Pageable pageable) {
+    public Page<OrderDetail> OrderDetailRepositoryImpl.findAllByCustomerOrder(CustomerOrder customerOrderField, GlobalSearch globalSearch, Pageable pageable) {
         NumberPath<Long> idOrderDetail = new NumberPath<Long>(Long.class, "id_");
         QOrderDetail orderDetail = QOrderDetail.orderDetail;
         JPQLQuery query = getQueryFrom(orderDetail);
-        BooleanBuilder where = new BooleanBuilder(orderDetail.product.eq(productField));
+        BooleanBuilder where = new BooleanBuilder(orderDetail.customerOrder.eq(customerOrderField));
 
         if (globalSearch != null) {
             String txt = globalSearch.getText();

@@ -108,7 +108,7 @@ privileged aspect CustomerOrderController_Roo_Thymeleaf {
         return orderDetail;
     }
     
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}/orderdetails/", produces = "application/vnd.datatables+json")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id_}/orderdetails/", produces = "application/vnd.datatables+json")
     @ResponseBody
     public DatatablesData<OrderDetail> CustomerOrderController.listOrderDetail(@PathVariable("id") CustomerOrder id, GlobalSearch search, Pageable pageable, @RequestParam("draw") Integer draw) {
         Page<OrderDetail> orderDetail = listOrderDetail(id, search, pageable);

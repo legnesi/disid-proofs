@@ -9,7 +9,6 @@ import com.disid.restful.repository.GlobalSearch;
 import com.disid.restful.service.api.CustomerService;
 import com.disid.restful.service.impl.CustomerServiceImpl;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,11 +24,6 @@ privileged aspect CustomerServiceImpl_Roo_Service_Impl {
     
     public CustomerRepository CustomerServiceImpl.customerRepository;
     
-    @Autowired
-    public CustomerServiceImpl.new(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
-
     @Transactional(readOnly = false)
     public Customer CustomerServiceImpl.save(Customer entity) {
         return customerRepository.save(entity);

@@ -20,6 +20,6 @@ privileged aspect OrderDetailRepository_Roo_Jpa_Repository {
     
     declare @type: OrderDetailRepository: @Transactional(readOnly = true);
     
-    public abstract Long OrderDetailRepository.countByCustomerOrderId(Long id);    
     public abstract Long OrderDetailRepository.countByProductId(Long id);    
+    public abstract Long OrderDetailRepository.countByCustomerOrderId(Long id);    
 }

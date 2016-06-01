@@ -20,4 +20,10 @@ public interface ProductService {
     long countByCategoriesContains(Category category);
 
     Set<Product> findByIdIn(Long[] productIds);
+
+    Product setCategories(Product product, Long[] categories);
+
+    Product addCategories(Product product, Long[] categories);
+
+    Product deleteCategories(Product product, Long[] categories);
 }

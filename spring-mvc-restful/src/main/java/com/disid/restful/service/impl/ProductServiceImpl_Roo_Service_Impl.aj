@@ -9,7 +9,6 @@ import com.disid.restful.repository.ProductRepository;
 import com.disid.restful.service.api.ProductService;
 import com.disid.restful.service.impl.ProductServiceImpl;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,11 +24,6 @@ privileged aspect ProductServiceImpl_Roo_Service_Impl {
     
     public ProductRepository ProductServiceImpl.productRepository;
     
-    @Autowired
-    public ProductServiceImpl.new(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
     @Transactional(readOnly = false)
     public Product ProductServiceImpl.save(Product entity) {
         return productRepository.save(entity);

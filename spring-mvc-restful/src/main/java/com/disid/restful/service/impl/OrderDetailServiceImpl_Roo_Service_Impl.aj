@@ -73,20 +73,20 @@ privileged aspect OrderDetailServiceImpl_Roo_Service_Impl {
         return orderDetailRepository.findAll(globalSearch, pageable);
     }
     
-    public Long OrderDetailServiceImpl.countByCustomerOrderId(Long id) {
-        return orderDetailRepository.countByCustomerOrderId(id);
-    }
-    
     public Long OrderDetailServiceImpl.countByProductId(Long id) {
         return orderDetailRepository.countByProductId(id);
     }
     
-    public Page<OrderDetail> OrderDetailServiceImpl.findAllByCustomerOrder(CustomerOrder customerOrderField, GlobalSearch globalSearch, Pageable pageable) {
-        return orderDetailRepository.findAllByCustomerOrder(customerOrderField, globalSearch, pageable);
+    public Long OrderDetailServiceImpl.countByCustomerOrderId(Long id) {
+        return orderDetailRepository.countByCustomerOrderId(id);
     }
     
     public Page<OrderDetail> OrderDetailServiceImpl.findAllByProduct(Product productField, GlobalSearch globalSearch, Pageable pageable) {
         return orderDetailRepository.findAllByProduct(productField, globalSearch, pageable);
+    }
+    
+    public Page<OrderDetail> OrderDetailServiceImpl.findAllByCustomerOrder(CustomerOrder customerOrderField, GlobalSearch globalSearch, Pageable pageable) {
+        return orderDetailRepository.findAllByCustomerOrder(customerOrderField, globalSearch, pageable);
     }
     
 }
