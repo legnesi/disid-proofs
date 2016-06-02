@@ -1,8 +1,8 @@
 = SOAP service using CXF and JAX-WS - Contract First
 
-This proof of concept is based on petclinic sample application generated using [Spring Roo 2.0.0.M2](http://projects.spring.io/spring-roo/) version.
+This proof of concept is based on petclinic sample application generated using link:http://projects.spring.io/spring-roo/[Spring Roo 2.0.0.M2] version.
 
-It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them from existing [.wsdl](https://www.w3.org/TR/wsdl) files (_*Contract First* web service development style_) during compilation process using JAX-WS maven plugin. 
+It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them from existing link:https://www.w3.org/TR/wsdl[.wsdl] files (_*Contract First* web service development style_) during compilation process using JAX-WS maven plugin. 
 
 == CXF Servlet
 
@@ -46,7 +46,7 @@ NOTE: _The code above register the `CXFServlet` in `/services/*` path, so we'll 
 
 == Included plugins
 
-To be able to generate web service API during compilation process from an existing [.wsdl](https://www.w3.org/TR/wsdl) file applying *Contract First* web service development style, we've just included the following maven plugins:
+To be able to generate web service API during compilation process from an existing link:https://www.w3.org/TR/wsdl[.wsdl] file applying *Contract First* web service development style, we've just included the following maven plugins:
 
 [source, xml]
 ----
@@ -121,9 +121,11 @@ NOTE: _See that is necessary to include some `@Autowired` fields to load applica
 
 == Execution 
 
-# Download this project or apply the changes above in your project
-# Use `mvn clean compile spring-boot:run` command to run the application or use STS Spring Boot plugin to do it.
-# Access to http://localhost:8080 and create some `Owner` and some `Pet`
-# Access to http://localhost:8080/services and get the `wsdl` contract URL.
-# Check the published operations with some SOAP client. (You could use the `Web Services Explorer` provided by default on STS) 
+. Download this project or apply the changes above in your project
+. Use `mvn clean compile spring-boot:run` command to run the application or use STS Spring Boot plugin to do it.
+. Access to http://localhost:8080 and create some `Owner` and some `Pet`
+. Access to http://localhost:8080/services and get the `wsdl` contract URL.
+. Check the published operations with some SOAP client. (You could use the `Web Services Explorer` provided by default on STS) 
+
+
 
