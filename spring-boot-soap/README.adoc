@@ -2,7 +2,7 @@
 
 This proof of concept is based on petclinic sample application generated using link:http://projects.spring.io/spring-roo/[Spring Roo 2.0.0.M2] version.
 
-It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them from existing link:https://www.w3.org/TR/wsdl[.wsdl] files (_*Contract First* web service development style_) during compilation process using JAX-WS maven plugin. 
+It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them from existing link:https://www.w3.org/TR/wsdl[.wsdl] files (*Contract First* web service development style) during compilation process using JAX-WS maven plugin. 
 
 == CXF Servlet
 
