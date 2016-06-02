@@ -1,0 +1,131 @@
+= SOAP service using CXF and JAX-WS - Contract First
+
+This proof of concept is based on petclinic sample application generated using link:http://projects.spring.io/spring-roo/[Spring Roo 2.0.0.M2] version.
+
+It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them from existing link:https://www.w3.org/TR/wsdl[.wsdl] files (*Contract First* web service development style) during compilation process using JAX-WS maven plugin. 
+
+== CXF Servlet
+
+To be able to register new `CXFServlet` in the Spring Boot application, we've just included the following dependencies:
+
+[source, xml]
+----
+<dependency>
+	<groupId>org.apache.cxf</groupId>
+	<artifactId>cxf-rt-frontend-jaxws</artifactId>
+	<version>${cxf.version}</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.cxf</groupId>
+	<artifactId>cxf-rt-transports-http</artifactId>
+	<version>${cxf.version}</version>
+</dependency>
+---- 
+
+Now, we are able to register `CXFServlet` in the Spring Boot application including the following code on a new *@Configuration* class:
+
+[source, java]
+----
+@Configuration
+public class WebMVCSOAPConfiguration {
+  
+  @Bean
+  public ServletRegistrationBean dispatcherCXFServlet() {
+      return new ServletRegistrationBean(new CXFServlet(), "/services/*");
+  }
+
+  @Bean(name=Bus.DEFAULT_BUS_ID)
+  public SpringBus springBus() {      
+      return new SpringBus();
+  }
+  
+}
+---- 
+
+NOTE: _The code above register the `CXFServlet` in `/services/*` path, so we'll be able to show the available services using http://localhost:8080/services URL_
+
+== Included plugins
+
+To be able to generate web service API during compilation process from an existing link:https://www.w3.org/TR/wsdl[.wsdl] file applying *Contract First* web service development style, we've just included the following maven plugins:
+
+[source, xml]
+----
+<plugin>
+	<groupId>org.jvnet.jax-ws-commons</groupId>
+	<artifactId>jaxws-maven-plugin</artifactId>
+	<version>2.3</version>
+	<configuration>
+		<wsdlUrls>
+			<wsdlUrl>src/main/resources/soap-api-definition/PetClinic.wsdl</wsdlUrl>
+		</wsdlUrls>
+		<sourceDestDir>target/generated-sources/wsdlimport/PetClinic</sourceDestDir>
+		<vmArgs>
+			<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+		</vmArgs>
+	</configuration>
+	<executions>
+		<execution>
+			<goals>
+				<goal>wsimport</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>build-helper-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<id>add-source</id>
+			<phase>generate-sources</phase>
+			<goals>
+				<goal>add-source</goal>
+			</goals>
+			<configuration>
+				<sources>
+					<source>target/generated-sources/wsdlimport/PetClinic</source>
+				</sources>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+----
+
+== Service implementation
+
+After compilation, the services, operations and types defined on the `.wsdl` file, will be included on `target/generated-sources/wsdlimport/PetClinic` folder.
+
+Now, we are able to implement the generated API to obtain the necessary information and interact with the other layers. See `PetClinicServiceImpl` class to see the service implementation.
+
+== Publish service
+
+To be able to publish the generated service on the `CXFServlet` we should define it as `EndPoint`. So, we've just included the following code on the `@Configuration` class where we registered the `CXFServlet`.  
+
+[source, java]
+----
+  @Bean
+  public PetClinicService petclinicService() {
+      return new PetClinicServiceImpl(this.petService, this.ownerService);
+  }
+  
+  @Bean
+  public Endpoint endpoint() {
+      EndpointImpl endpoint = new EndpointImpl(springBus(), petclinicService());
+      endpoint.publish("/PetClinicSoapService");
+      endpoint.setWsdlLocation("PetClinic.wsdl");
+      return endpoint;
+  }
+----
+
+NOTE: _See that is necessary to include some `@Autowired` fields to load application services_
+
+== Execution 
+
+. Download this project or apply the changes above in your project
+. Use `mvn clean compile spring-boot:run` command to run the application or use STS Spring Boot plugin to do it.
+. Access to http://localhost:8080 and create some `Owner` and some `Pet`
+. Access to http://localhost:8080/services and get the `wsdl` contract URL.
+. Check the published operations with some SOAP client. (You could use the `Web Services Explorer` provided by default on STS) 
+
+
+
