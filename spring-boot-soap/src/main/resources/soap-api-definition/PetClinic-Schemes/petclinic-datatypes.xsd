@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.petclinic.springsource.com/namespace/petclinicservice/datatypes"
+	xmlns:datatypes="http://www.petclinic.springsource.com/namespace/petclinicservice/datatypes"
+	xmlns:mime="http://www.w3.org/2005/05/xmlmime" targetNamespace="http://www.petclinic.springsource.com/namespace/petclinicservice/datatypes"
+	elementFormDefault="qualified" version="1.0">
+
+	<s:simpleType name="PetType">
+		<s:restriction base="s:string">
+			<s:enumeration value="Dog" />
+			<s:enumeration value="Cat" />
+			<s:enumeration value="Bird" />
+		</s:restriction>
+	</s:simpleType>
+
+
+	<s:complexType name="Owner">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="id" type="s:long" />
+			<s:element minOccurs="0" maxOccurs="1" name="firstName"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="lastName"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="address" type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="telephone"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="homePage"
+				type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="birthDay"
+				type="s:date" />
+			<s:element minOccurs="0" maxOccurs="unbounded" name="pets"
+				type="datatypes:Pet" />
+		</s:sequence>
+	</s:complexType>
+
+	<s:complexType name="ArrayOfOwners">
+		<s:sequence>
+			<s:element minOccurs="0" maxOccurs="unbounded" name="Owner"
+				nillable="true" type="datatypes:Owner" />
+		</s:sequence>
+	</s:complexType>
+
+	<s:complexType name="Pet">
+		<s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="id" type="s:long" />
+			<s:element minOccurs="0" maxOccurs="1" name="sendReminders"
+				type="s:boolean" />
+			<s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="weight" type="s:float" />
+			<s:element minOccurs="0" maxOccurs="1" name="owner"
+				type="datatypes:Owner" />
+			<s:element minOccurs="0" maxOccurs="1" name="type"
+				type="datatypes:PetType" />
+		</s:sequence>
+	</s:complexType>
+
+	<s:complexType name="ArrayOfPets">
+		<s:sequence>
+			<s:element minOccurs="0" maxOccurs="unbounded" name="Pet"
+				nillable="true" type="datatypes:Pet" />
+		</s:sequence>
+	</s:complexType>
+
+
+
+
+</s:schema>

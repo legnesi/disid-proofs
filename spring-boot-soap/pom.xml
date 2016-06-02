@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<!-- Spring IO Platform is the parent of the generated application to be 
 		able to use Spring Boot and all its default configuration -->
@@ -7,7 +8,7 @@
 		<groupId>io.spring.platform</groupId>
 		<artifactId>platform-bom</artifactId>
 		<version>2.0.3.RELEASE</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 	<groupId>com.springsource.petclinic</groupId>
 	<artifactId>petclinic</artifactId>
@@ -61,67 +62,67 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-		
+
 		<!-- Test utils dependencies -->
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>${assertj.version}</version>
-	  	</dependency>
-	  		
+		</dependency>
+
 		<!-- Dependencies added by Spring Roo -->
 
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-        </dependency>
-    	<dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
-    	<dependency>
-            <groupId>com.mysema.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-        </dependency>
-    	<dependency>
-            <groupId>org.springframework.roo</groupId>
-            <artifactId>org.springframework.roo.querydsl.processor</artifactId>
-            <version>1.0.0.RELEASE</version>
-        </dependency>
-    	<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-    	<dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-    	<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-    	<dependency>
-            <groupId>nz.net.ultraq.thymeleaf</groupId>
-            <artifactId>thymeleaf-layout-dialect</artifactId>
-        </dependency>
-        
-        <!-- WS SOAP - Dependencies -->
-        <dependency>
-		    <groupId>org.apache.cxf</groupId>
-		    <artifactId>cxf-rt-frontend-jaxws</artifactId>
-		    <version>${cxf.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>org.apache.cxf</groupId>
-		    <artifactId>cxf-rt-transports-http</artifactId>
-		    <version>${cxf.version}</version>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
 		</dependency>
-        
-    </dependencies>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.roo</groupId>
+			<artifactId>org.springframework.roo.querydsl.processor</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+
+		<!-- WS SOAP - Dependencies -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -175,40 +176,40 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			
+
 			<!-- Surefire plugin configuration -->
 			<plugin>
-        		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-surefire-plugin</artifactId>
-        		<configuration>
-          			<excludes>
-            			<exclude>**/*_Roo_*</exclude>
-          			</excludes>
-        		</configuration>
-      		</plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*_Roo_*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 
 			<plugin>
-                <groupId>com.mysema.maven</groupId>
-                <artifactId>apt-maven-plugin</artifactId>
-                <version>1.1.3</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>process</goal>
-                        </goals>
-                        <configuration>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>1.1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
 							<outputDirectory>target/generated-sources/java</outputDirectory>
 							<processors>
 								<processor>org.springframework.roo.querydsl.processor.RooAnnotationProcessor
 								</processor>
 							</processors>
 						</configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            
-            <!-- WS SOAP - Plugins -->
-            <plugin>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- WS SOAP - Plugins -->
+			<plugin>
 				<groupId>org.jvnet.jax-ws-commons</groupId>
 				<artifactId>jaxws-maven-plugin</artifactId>
 				<version>2.3</version>
@@ -218,8 +219,8 @@
 					</wsdlUrls>
 					<sourceDestDir>target/generated-sources/wsdlimport/PetClinic</sourceDestDir>
 					<vmArgs>
-			            <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-			        </vmArgs>
+						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+					</vmArgs>
 				</configuration>
 				<executions>
 					<execution>
@@ -229,31 +230,31 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>build-helper-maven-plugin</artifactId>
-		        <executions>
-		          <execution>
-		            <id>add-source</id>
-		            <phase>generate-sources</phase>
-		            <goals>
-		              <goal>add-source</goal>
-		            </goals>
-		            <configuration>
-		              <sources>
-		                <source>target/generated-sources/wsdlimport/PetClinic</source>
-		              </sources>
-		            </configuration>
-		          </execution>
-		        </executions>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-sources/wsdlimport/PetClinic</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
-        </plugins>
+		</plugins>
 	</build>
 
-<repositories>
-        <repository>
-            <id>spring roo repository</id>
-            <url>http://repo.spring.io/spring-roo</url>
-        </repository>
-    </repositories>
+	<repositories>
+		<repository>
+			<id>spring roo repository</id>
+			<url>http://repo.spring.io/spring-roo</url>
+		</repository>
+	</repositories>
 </project>

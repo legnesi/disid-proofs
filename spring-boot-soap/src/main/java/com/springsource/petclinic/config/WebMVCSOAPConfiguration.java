@@ -10,10 +10,10 @@ import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.springsource.petclinic.namespace.petclinicservice.PetClinicService;
 import com.springsource.petclinic.service.api.OwnerService;
 import com.springsource.petclinic.service.api.PetService;
 import com.springsource.petclinic.web.soap.PetClinicServiceImpl;
-import com.springsource.petclinic.ws.PetClinicServicePortType;
 
 @Configuration
 public class WebMVCSOAPConfiguration {
@@ -35,7 +35,7 @@ public class WebMVCSOAPConfiguration {
   }
   
   @Bean
-  public PetClinicServicePortType petclinicService() {
+  public PetClinicService petclinicService() {
       return new PetClinicServiceImpl(this.petService, this.ownerService);
   }
   
