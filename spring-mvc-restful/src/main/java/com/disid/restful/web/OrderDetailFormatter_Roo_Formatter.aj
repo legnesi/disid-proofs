@@ -6,11 +6,9 @@ package com.disid.restful.web;
 import com.disid.restful.model.OrderDetail;
 import com.disid.restful.service.api.OrderDetailService;
 import com.disid.restful.web.OrderDetailFormatter;
-import java.text.ParseException;
 import java.util.Locale;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.format.Formatter;
-import org.springframework.util.StringUtils;
 
 privileged aspect OrderDetailFormatter_Roo_Formatter {
     
@@ -25,14 +23,6 @@ privileged aspect OrderDetailFormatter_Roo_Formatter {
         this.conversionService = conversionService;
     }
 
-    public OrderDetail OrderDetailFormatter.parse(String text, Locale locale) throws ParseException {
-        if (text == null || !StringUtils.hasText(text)) {
-            return null;
-        }
-        Long id = conversionService.convert(text, Long.class);
-        return orderDetailService.findOne(id);
-    }
-    
     public String OrderDetailFormatter.print(OrderDetail orderDetail, Locale locale) {
         return orderDetail == null ? null : new StringBuilder().append(orderDetail.getQuantity()).toString();
     }

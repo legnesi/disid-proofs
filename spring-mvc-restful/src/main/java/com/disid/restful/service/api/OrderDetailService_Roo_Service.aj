@@ -5,6 +5,7 @@ package com.disid.restful.service.api;
 
 import com.disid.restful.model.CustomerOrder;
 import com.disid.restful.model.OrderDetail;
+import com.disid.restful.model.OrderDetailPK;
 import com.disid.restful.model.Product;
 import com.disid.restful.repository.GlobalSearch;
 import com.disid.restful.service.api.OrderDetailService;
@@ -18,14 +19,14 @@ privileged aspect OrderDetailService_Roo_Service {
     @Transactional(readOnly = false)
     public abstract OrderDetail OrderDetailService.save(OrderDetail entity);    
     @Transactional(readOnly = false)
-    public abstract void OrderDetailService.delete(Long id);    
+    public abstract void OrderDetailService.delete(OrderDetailPK id);    
     @Transactional(readOnly = false)
     public abstract List<OrderDetail> OrderDetailService.save(Iterable<OrderDetail> entities);    
     @Transactional(readOnly = false)
-    public abstract void OrderDetailService.delete(Iterable<Long> ids);    
+    public abstract void OrderDetailService.delete(Iterable<OrderDetailPK> ids);    
     public abstract List<OrderDetail> OrderDetailService.findAll();    
-    public abstract List<OrderDetail> OrderDetailService.findAll(Iterable<Long> ids);    
-    public abstract OrderDetail OrderDetailService.findOne(Long id);    
+    public abstract List<OrderDetail> OrderDetailService.findAll(Iterable<OrderDetailPK> ids);    
+    public abstract OrderDetail OrderDetailService.findOne(OrderDetailPK id);    
     public abstract long OrderDetailService.count();    
     public abstract Page<OrderDetail> OrderDetailService.findAll(GlobalSearch globalSearch, Pageable pageable);    
     public abstract Page<OrderDetail> OrderDetailService.findAllByProduct(Product productField, GlobalSearch globalSearch, Pageable pageable);    

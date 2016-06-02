@@ -5,7 +5,6 @@ package com.disid.restful.model;
 
 import com.disid.restful.model.CustomerOrder;
 import com.disid.restful.model.OrderDetail;
-import com.disid.restful.model.OrderDetailPK;
 import com.disid.restful.model.Product;
 
 privileged aspect OrderDetail_Roo_JavaBean {
@@ -32,14 +31,6 @@ privileged aspect OrderDetail_Roo_JavaBean {
     
     public void OrderDetail.setCustomerOrder(CustomerOrder customerOrder) {
         this.customerOrder = customerOrder;
-    }
-    
-    public OrderDetailPK OrderDetail.getId() {
-        return this.id;
-    }
-    
-    public void OrderDetail.setId(OrderDetailPK id) {
-        this.id = id;
     }
     
 }

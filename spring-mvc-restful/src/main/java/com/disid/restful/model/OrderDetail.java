@@ -10,7 +10,7 @@ import org.springframework.roo.addon.jpa.annotations.entity.RooJpaEntity;
 
 @RooJavaBean
 @RooToString
-@RooJpaEntity
+@RooJpaEntity(identifierType = OrderDetailPK.class)
 public class OrderDetail {
 
     /**
@@ -28,8 +28,4 @@ public class OrderDetail {
     @MapsId("customerOrderId")
     @JoinColumn(name = "customerOrderId", referencedColumnName = "id")
     private CustomerOrder customerOrder;
-
-    /**
-     */
-    private OrderDetailPK id;
 }

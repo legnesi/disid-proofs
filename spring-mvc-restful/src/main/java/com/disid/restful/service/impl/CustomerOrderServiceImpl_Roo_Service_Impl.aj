@@ -10,7 +10,6 @@ import com.disid.restful.repository.GlobalSearch;
 import com.disid.restful.service.api.CustomerOrderService;
 import com.disid.restful.service.impl.CustomerOrderServiceImpl;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,11 +25,6 @@ privileged aspect CustomerOrderServiceImpl_Roo_Service_Impl {
     
     public CustomerOrderRepository CustomerOrderServiceImpl.customerOrderRepository;
     
-    @Autowired
-    public CustomerOrderServiceImpl.new(CustomerOrderRepository customerOrderRepository) {
-        this.customerOrderRepository = customerOrderRepository;
-    }
-
     @Transactional(readOnly = false)
     public CustomerOrder CustomerOrderServiceImpl.save(CustomerOrder entity) {
         return customerOrderRepository.save(entity);

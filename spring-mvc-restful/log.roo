@@ -81,3 +81,10 @@ push-in --class ~.web.CategoryController
 hint
 // Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-06-01 06:14:21
 push-in --class ~.web.MainController
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-06-01 16:48:56
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-06-02 10:01:43
+hint
+push-in --class ~.service.impl.OrderDetailServiceImpl
+push-in --class ~.repository.OrderDetailRepository
+push-in --class ~.repository.OrderDetailRepositoryImpl
+push-in --class ~.web.OrderDetailFormatter --method parse 

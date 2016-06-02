@@ -4,32 +4,29 @@
 package com.disid.restful.model;
 
 import com.disid.restful.model.OrderDetail;
+import com.disid.restful.model.OrderDetailPK;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Version;
 
 privileged aspect OrderDetail_Roo_Jpa_Entity {
     
     declare @type: OrderDetail: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_")
-    private Long OrderDetail.id_;
+    @EmbeddedId
+    private OrderDetailPK OrderDetail.id;
     
     @Version
     @Column(name = "version")
     private Integer OrderDetail.version;
     
-    public Long OrderDetail.getId_() {
-        return this.id_;
+    public OrderDetailPK OrderDetail.getId() {
+        return this.id;
     }
     
-    public void OrderDetail.setId_(Long id) {
-        this.id_ = id;
+    public void OrderDetail.setId(OrderDetailPK id) {
+        this.id = id;
     }
     
     public Integer OrderDetail.getVersion() {
