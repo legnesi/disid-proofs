@@ -1,8 +1,8 @@
-= SOAP service using CXF and JAX-WS - Contract First
+= SOAP service using CXF and JAXB - Contract Last
 
 This proof of concept is based on petclinic sample application generated using link:http://projects.spring.io/spring-roo/[Spring Roo 2.0.0.M2] version.
 
-It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them from existing link:https://www.w3.org/TR/wsdl[.wsdl] files (*Contract First* web service development style) during compilation process using JAX-WS maven plugin. 
+It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them using Contract Last approach. 
 
 == CXF Servlet
 
@@ -44,58 +44,77 @@ public class WebMVCSOAPConfiguration {
 
 NOTE: _The code above register the `CXFServlet` in `/services/*` path, so we'll be able to show the available services using http://localhost:8080/services URL_
 
+== Define the service
+
+First of all is necessary to define the operations that we are going to offer in our provided SOAP service. In this case, we are going to offer:
+
+* `GetAllOwners`: it will return all available owners
+* `GetAllPets`: it will return all available pets with its related `Owner`.
+
+We're going to generate SOAP services using Contract-Last approach, we should start with the Java code instead of defining the contract.
+
+. Define the service API with the available operations. See `PetClinicService.java` for more details. 
+. Generate `OwnerInfo` and `PetInfo` Data Transfer Objects (DTO) to be able to return our custom information about entities.
+. Implements service interface. See `PetClinicServiceImpl.java` for more details 
+
+
+== Binding
+
+To be able to show our custom information about the obtained entities, we have generated `OwnerInfo` DTO and `PetInfo` DTO. But, we need to apply some changes to bind DTO fields with the entity fields using *JAXB*. So:
+
+. Include the following dependency in your project
++
+[source, xml]
+----
+<dependency>
+	<groupId>javax.xml.bind</groupId>
+	<artifactId>jaxb-api</artifactId>
+	<version>2.2.12</version>
+</dependency>
+----
++
+. Include JAXB annotations in your DTOs. See `OwnerInfo` or `PetInfo` for more details.
+
+
 == Included plugins
 
-To be able to generate web service API during compilation process from an existing link:https://www.w3.org/TR/wsdl[.wsdl] file applying *Contract First* web service development style, we've just included the following maven plugins:
+To be able to generate the web service contract (WSDL) on runtime process based on the defined service .java class, is necessary to include the following maven plugin: 
 
 [source, xml]
 ----
 <plugin>
-	<groupId>org.jvnet.jax-ws-commons</groupId>
-	<artifactId>jaxws-maven-plugin</artifactId>
-	<version>2.3</version>
-	<configuration>
-		<wsdlUrls>
-			<wsdlUrl>src/main/resources/soap-api-definition/PetClinic.wsdl</wsdlUrl>
-		</wsdlUrls>
-		<sourceDestDir>target/generated-sources/wsdlimport/PetClinic</sourceDestDir>
-		<vmArgs>
-			<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-		</vmArgs>
-	</configuration>
+	<groupId>org.apache.cxf</groupId>
+	<artifactId>cxf-java2ws-plugin</artifactId>
+	<version>${cxf.version}</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-simple</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+	</dependencies>
 	<executions>
 		<execution>
-			<goals>
-				<goal>wsimport</goal>
-			</goals>
-		</execution>
-	</executions>
-</plugin>
-<plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>build-helper-maven-plugin</artifactId>
-	<executions>
-		<execution>
-			<id>add-source</id>
-			<phase>generate-sources</phase>
-			<goals>
-				<goal>add-source</goal>
-			</goals>
+			<id>${project.basedir}/src/test/resources/generated/wsdl/PetClinicService.wsdl</id>
+			<phase>test</phase>
 			<configuration>
-				<sources>
-					<source>target/generated-sources/wsdlimport/PetClinic</source>
-				</sources>
+				<className>com.springsource.petclinic.ws.PetClinicService</className>
+				<outputFile>${project.basedir}/src/test/resources/generated/wsdl/PetClinicService.wsdl</outputFile>
+				<genWsdl>true</genWsdl>
+				<verbose>true</verbose>
 			</configuration>
+			<goals>
+				<goal>java2ws</goal>
+			</goals>
 		</execution>
 	</executions>
 </plugin>
 ----
-
-== Service implementation
-
-After compilation, the services, operations and types defined on the `.wsdl` file, will be included on `target/generated-sources/wsdlimport/PetClinic` folder.
-
-Now, we are able to implement the generated API to obtain the necessary information and interact with the other layers. See `PetClinicServiceImpl` class to see the service implementation.
 
 == Publish service
 

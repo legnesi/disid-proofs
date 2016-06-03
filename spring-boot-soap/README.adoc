@@ -1,9 +1,9 @@
-= SOAP service using CXF and JAX-WS 
+= SOAP service using CXF, JAX-WS and JAXB 
 
 These proof of concepts show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and JAX-WS. 
 
 When creating Web services, there are two development styles: Contract Last and Contract First. When using a contract-last approach, you start with the Java code, and let the Web service contract (WSDL file) be generated from that. When using contract-first, you start with the WSDL contract, and use Java to implement said contract. 
 
-Show *Contract-first* proof of concept if you are interested on the contract first web service development style or *Contract-last* proof of concept if you are interested on the contract last web service development style. Both of them include its own `README` file.
+Show *contract-first* proof of concept if you are interested on the contract first web service development style or *contract-last* proof of concept if you are interested on the contract last web service development style. Both of them include its own `README` file.
 
 

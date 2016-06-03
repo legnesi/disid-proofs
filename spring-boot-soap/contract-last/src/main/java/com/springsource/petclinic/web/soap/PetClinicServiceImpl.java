@@ -1,51 +1,68 @@
 package com.springsource.petclinic.web.soap;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.WebMethod;
-import javax.jws.WebResult;
-import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
-import javax.jws.soap.SOAPBinding.ParameterStyle;
-import javax.jws.soap.SOAPBinding.Style;
-import javax.jws.soap.SOAPBinding.Use;
-import javax.xml.ws.ResponseWrapper;
-
 import com.springsource.petclinic.domain.Owner;
+import com.springsource.petclinic.domain.OwnerInfo;
 import com.springsource.petclinic.domain.Pet;
+import com.springsource.petclinic.domain.PetInfo;
 import com.springsource.petclinic.service.api.OwnerService;
 import com.springsource.petclinic.service.api.PetService;
 
-@WebService(name = "PetClinicService", targetNamespace = "http://www.petclinic.springsource.com/namespace/petservice/", serviceName = "PetClinicService", portName = "PetClinicService")
-@SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.WRAPPED)
+
 public class PetClinicServiceImpl implements PetClinicService {
 
-	private PetService petService;
-	private OwnerService ownerService;
+  private PetService petService;
+  private OwnerService ownerService;
 
-	public PetClinicServiceImpl() {
+  public PetClinicServiceImpl() {
 
-	}
+  }
 
-	public PetClinicServiceImpl(PetService petService, OwnerService ownerService) {
-		this.petService = petService;
-		this.ownerService = ownerService;
-	}
+  public PetClinicServiceImpl(PetService petService, OwnerService ownerService) {
+    this.petService = petService;
+    this.ownerService = ownerService;
+  }
 
-	@WebMethod(operationName = "GetAllPets", action = "", exclude = false)
-	@WebResult(name = "return", targetNamespace = "http://www.petclinic.springsource.com/namespace/petservice/", header = false, partName = "parameters")
-	@ResponseWrapper(localName = "GetAllPetsResponse", targetNamespace = "http://www.petclinic.springsource.com/namespace/petservice/", className = "com.springsource.petclinic.web.soap.GetAllPetsResponse")
-	@Override
-	public List<Pet> getAllPets() {
-		return this.petService.findAll();
-	}
 
-	@WebMethod(operationName = "GetAllOwners", action = "", exclude = false)
-	@WebResult(name = "return", targetNamespace = "http://www.petclinic.springsource.com/namespace/petservice/", header = false, partName = "parameters")
-	@ResponseWrapper(localName = "GetAllOwnersResponse", targetNamespace = "http://www.petclinic.springsource.com/namespace/petservice/", className = "com.springsource.petclinic.web.soap.GetAllOwnersResponse")
-	@Override
-	public List<Owner> getAllOwners() {
-		return this.ownerService.findAll();
-	}
+  @Override
+  public List<PetInfo> getAllPets() {
+    List<Pet> pets = this.petService.findAll();
+    List<PetInfo> petInfo = new ArrayList<PetInfo>();
+
+    for (Pet pet : pets) {
+      petInfo.add(new PetInfo(pet.getId(), pet.isSendReminders(), pet.getName(), pet.getWeight(), getOwnerInfo(pet.getOwner()),
+          pet.getType()));
+    }
+    return petInfo;
+  }
+
+
+  @Override
+  public List<OwnerInfo> getAllOwners() {
+    List<Owner> owners = this.ownerService.findAll();
+    List<OwnerInfo> ownerInfo = new ArrayList<OwnerInfo>();
+
+    for (Owner owner : owners) {
+      ownerInfo.add(getOwnerInfo(owner));
+    }
+
+    return ownerInfo;
+
+  }
+  
+  /**
+   * Method that obtain an OwnerInfo data transfer object from
+   * entity Owner.
+   * 
+   * @param owner
+   * @return OwnerInfo DTO
+   */
+  private OwnerInfo getOwnerInfo(Owner owner){
+    return new OwnerInfo(owner.getId(), owner.getFirstName(), owner.getLastName(),
+        owner.getAddress(), owner.getCity(), owner.getTelephone(), owner.getHomePage(),
+        owner.getEmail(), owner.getBirthDay());
+  }
 
 }
