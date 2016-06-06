@@ -75,47 +75,6 @@ To be able to show our custom information about the obtained entities, we have g
 +
 . Include JAXB annotations in your DTOs. See `OwnerInfo` or `PetInfo` for more details.
 
-
-== Included plugins
-
-To be able to generate the web service contract (WSDL) on runtime process based on the defined service .java class, is necessary to include the following maven plugin: 
-
-[source, xml]
-----
-<plugin>
-	<groupId>org.apache.cxf</groupId>
-	<artifactId>cxf-java2ws-plugin</artifactId>
-	<version>${cxf.version}</version>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-simple</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-	</dependencies>
-	<executions>
-		<execution>
-			<id>${project.basedir}/src/test/resources/generated/wsdl/PetClinicService.wsdl</id>
-			<phase>test</phase>
-			<configuration>
-				<className>com.springsource.petclinic.ws.PetClinicService</className>
-				<outputFile>${project.basedir}/src/test/resources/generated/wsdl/PetClinicService.wsdl</outputFile>
-				<genWsdl>true</genWsdl>
-				<verbose>true</verbose>
-			</configuration>
-			<goals>
-				<goal>java2ws</goal>
-			</goals>
-		</execution>
-	</executions>
-</plugin>
-----
-
 == Publish service
 
 To be able to publish the generated service on the `CXFServlet` we should define it as `EndPoint`. So, we've just included the following code on the `@Configuration` class where we registered the `CXFServlet`.  
