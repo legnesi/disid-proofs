@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:petclinic="http://www.petclinic.springsource.com/namespace/petclinicservice/"
+	xmlns:general="http://www.petclinic.springsource.com/namespace/petclinicservice/general"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	targetNamespace="http://www.petclinic.springsource.com/namespace/petclinicservice/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:types>
+		<s:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:s="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.petclinic.springsource.com/namespace/petclinicservice/"
+			attributeFormDefault="qualified" elementFormDefault="qualified">
+			<s:include schemaLocation="PetClinic.xsd" />
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="GetAllPetsIn">
+		<wsdl:part name="parameters" element="general:GetAllPets" />
+	</wsdl:message>	
+	<wsdl:message name="GetAllPetsOut">
+		<wsdl:part name="parameters" element="general:GetAllPetsResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetAllOwnersIn">
+		<wsdl:part name="parameters" element="general:GetAllOwners"/>
+	</wsdl:message>
+	<wsdl:message name="GetAllOwnersOut">
+		<wsdl:part name="parameters" element="general:GetAllOwnersResponse" />
+	</wsdl:message>
+	<wsdl:portType name="PetClinicService">
+		<wsdl:operation name="GetAllPets">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get
+				all available pets registered on the clinic</wsdl:documentation>
+			<wsdl:input message="petclinic:GetAllPetsIn" />
+			<wsdl:output message="petclinic:GetAllPetsOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetAllOwners">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Allows you to get
+				all available owners registered on the clinic</wsdl:documentation>
+			<wsdl:input message="petclinic:GetAllOwnersIn" />
+			<wsdl:output message="petclinic:GetAllOwnersOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PetClinicService" type="petclinic:PetClinicService">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetAllPets">
+			<soap:operation
+				soapAction="http://www.petclinic.springsource.com/namespace/petclinicservice/GetAllPets"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetAllOwners">
+			<soap:operation
+				soapAction="http://www.petclinic.springsource.com/namespace/petclinicservice/GetAllOwners"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PetClinic">
+		<wsdl:port name="PetClinicService" binding="petclinic:PetClinicService">
+			<soap:address location="http://localhost:8080/services/PetClinicService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

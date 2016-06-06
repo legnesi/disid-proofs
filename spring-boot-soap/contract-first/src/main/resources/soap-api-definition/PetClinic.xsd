@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:schema xmlns:weather="http://www.petclinic.springsource.com/namespace/petclinicservice/"
+            xmlns:s="http://www.w3.org/2001/XMLSchema"
+            xmlns:datatypes="http://www.petclinic.springsource.com/namespace/petclinicservice/datatypes"
+            targetNamespace="http://www.petclinic.springsource.com/namespace/petclinicservice/"
+            elementFormDefault="qualified"
+            version="1.0">
+      
+      <s:import namespace="http://www.petclinic.springsource.com/namespace/petclinicservice/general"
+                schemaLocation="PetClinic-Schemes/petclinic-general.xsd"/>
+      
+</s:schema>

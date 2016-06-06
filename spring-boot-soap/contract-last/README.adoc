@@ -1,0 +1,150 @@
+= SOAP service using CXF and JAXB - Contract Last
+
+This proof of concept is based on petclinic sample application generated using link:http://projects.spring.io/spring-roo/[Spring Roo 2.0.0.M2] version.
+
+It includes the necessary changes to show you how to configure an Spring Boot application to provide SOAP Services using Apache CXF and how to generate them using Contract Last approach. 
+
+== CXF Servlet
+
+To be able to register new `CXFServlet` in the Spring Boot application, we've just included the following dependencies:
+
+[source, xml]
+----
+<dependency>
+	<groupId>org.apache.cxf</groupId>
+	<artifactId>cxf-rt-frontend-jaxws</artifactId>
+	<version>${cxf.version}</version>
+</dependency>
+<dependency>
+	<groupId>org.apache.cxf</groupId>
+	<artifactId>cxf-rt-transports-http</artifactId>
+	<version>${cxf.version}</version>
+</dependency>
+---- 
+
+Now, we are able to register `CXFServlet` in the Spring Boot application including the following code on a new *@Configuration* class:
+
+[source, java]
+----
+@Configuration
+public class WebMVCSOAPConfiguration {
+  
+  @Bean
+  public ServletRegistrationBean dispatcherCXFServlet() {
+      return new ServletRegistrationBean(new CXFServlet(), "/services/*");
+  }
+
+  @Bean(name=Bus.DEFAULT_BUS_ID)
+  public SpringBus springBus() {      
+      return new SpringBus();
+  }
+  
+}
+---- 
+
+NOTE: _The code above register the `CXFServlet` in `/services/*` path, so we'll be able to show the available services using http://localhost:8080/services URL_
+
+== Define the service
+
+First of all is necessary to define the operations that we are going to offer in our provided SOAP service. In this case, we are going to offer:
+
+* `GetAllOwners`: it will return all available owners
+* `GetAllPets`: it will return all available pets with its related `Owner`.
+
+We're going to generate SOAP services using Contract-Last approach, we should start with the Java code instead of defining the contract.
+
+. Define the service API with the available operations. See `PetClinicService.java` for more details. 
+. Generate `OwnerInfo` and `PetInfo` Data Transfer Objects (DTO) to be able to return our custom information about entities.
+. Implements service interface. See `PetClinicServiceImpl.java` for more details 
+
+
+== Binding
+
+To be able to show our custom information about the obtained entities, we have generated `OwnerInfo` DTO and `PetInfo` DTO. But, we need to apply some changes to bind DTO fields with the entity fields using *JAXB*. So:
+
+. Include the following dependency in your project
++
+[source, xml]
+----
+<dependency>
+	<groupId>javax.xml.bind</groupId>
+	<artifactId>jaxb-api</artifactId>
+	<version>2.2.12</version>
+</dependency>
+----
++
+. Include JAXB annotations in your DTOs. See `OwnerInfo` or `PetInfo` for more details.
+
+
+== Included plugins
+
+To be able to generate the web service contract (WSDL) on runtime process based on the defined service .java class, is necessary to include the following maven plugin: 
+
+[source, xml]
+----
+<plugin>
+	<groupId>org.apache.cxf</groupId>
+	<artifactId>cxf-java2ws-plugin</artifactId>
+	<version>${cxf.version}</version>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-simple</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+	</dependencies>
+	<executions>
+		<execution>
+			<id>${project.basedir}/src/test/resources/generated/wsdl/PetClinicService.wsdl</id>
+			<phase>test</phase>
+			<configuration>
+				<className>com.springsource.petclinic.ws.PetClinicService</className>
+				<outputFile>${project.basedir}/src/test/resources/generated/wsdl/PetClinicService.wsdl</outputFile>
+				<genWsdl>true</genWsdl>
+				<verbose>true</verbose>
+			</configuration>
+			<goals>
+				<goal>java2ws</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+----
+
+== Publish service
+
+To be able to publish the generated service on the `CXFServlet` we should define it as `EndPoint`. So, we've just included the following code on the `@Configuration` class where we registered the `CXFServlet`.  
+
+[source, java]
+----
+  @Bean
+  public PetClinicService petclinicService() {
+      return new PetClinicServiceImpl(this.petService, this.ownerService);
+  }
+  
+  @Bean
+  public Endpoint endpoint() {
+      EndpointImpl endpoint = new EndpointImpl(springBus(), petclinicService());
+      endpoint.publish("/PetClinicSoapService");
+      endpoint.setWsdlLocation("PetClinic.wsdl");
+      return endpoint;
+  }
+----
+
+NOTE: _See that is necessary to include some `@Autowired` fields to load application services_
+
+== Execution 
+
+. Download this project or apply the changes above in your project
+. Use `mvn clean compile spring-boot:run` command to run the application or use STS Spring Boot plugin to do it.
+. Access to http://localhost:8080 and create some `Owner` and some `Pet`
+. Access to http://localhost:8080/services and get the `wsdl` contract URL.
+. Check the published operations with some SOAP client. (You could use the `Web Services Explorer` provided by default on STS) 
+
+
+
