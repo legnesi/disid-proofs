@@ -35,13 +35,6 @@ public class CustomerServiceImpl {
     }
 
     @Transactional
-    public Customer setOrders(Customer customer, Long[] orders) {
-	Set<CustomerOrder> customerOrders = updateAndGetCustomerOrders(customer, orders, true);
-	customer.setOrders(customerOrders);
-	return customerRepository.save(customer);
-    }
-
-    @Transactional
     public Customer addOrders(Customer customer, Long[] orders) {
 	Set<CustomerOrder> customerOrders = updateAndGetCustomerOrders(customer, orders, true);
 	customer.getOrders().addAll(customerOrders);

@@ -15,8 +15,6 @@ public interface CategoryService {
 
     void delete(Category category);
 
-    Category setProducts(Category category, Long[] products);
-
     Category addProducts(Category category, Long[] products);
 
     Category deleteProducts(Category category, Long[] products);

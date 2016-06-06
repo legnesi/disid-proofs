@@ -56,12 +56,6 @@ public class CategoriesItemProductsController {
 	return new DatatablesData<Product>(products, allAvailableProducts, draw);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Category setProducts(@ModelAttribute Category category, @RequestBody Long[] products) {
-	return categoryService.setProducts(category, products);
-    }
-
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Category addProducts(@ModelAttribute Category category, @RequestBody Long[] products) {

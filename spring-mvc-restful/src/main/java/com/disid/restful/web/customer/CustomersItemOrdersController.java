@@ -55,12 +55,6 @@ public class CustomersItemOrdersController {
         return new DatatablesData<CustomerOrder>(customerOrder, allAvailableCustomerOrderDetails, draw);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Customer setOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
-	return customerService.setOrders(customer, orders);
-    }
-
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Customer addOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {

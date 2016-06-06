@@ -88,3 +88,4 @@ push-in --class ~.service.impl.OrderDetailServiceImpl
 push-in --class ~.repository.OrderDetailRepository
 push-in --class ~.repository.OrderDetailRepositoryImpl
 push-in --class ~.web.OrderDetailFormatter --method parse 
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-06-02 17:53:00

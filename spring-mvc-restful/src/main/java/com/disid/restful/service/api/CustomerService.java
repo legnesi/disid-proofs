@@ -8,8 +8,6 @@ public interface CustomerService {
 
     void delete(Customer customer);
 
-    Customer setOrders(Customer customer, Long[] orders);
-
     Customer addOrders(Customer customer, Long[] orders);
 
     Customer deleteOrders(Customer customer, Long[] orders);

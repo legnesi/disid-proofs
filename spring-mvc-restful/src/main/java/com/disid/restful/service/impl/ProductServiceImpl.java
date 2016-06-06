@@ -51,13 +51,6 @@ public class ProductServiceImpl {
     }
 
     @Transactional
-    public Product setCategories(Product product, Long[] categoryIds) {
-	Set<Category> categories = updateAndGetCategories(product, categoryIds, true);
-	product.setCategories(categories);
-	return productRepository.save(product);
-    }
-
-    @Transactional
     public Product addCategories(Product product, Long[] categoryIds) {
 	Set<Category> categories = updateAndGetCategories(product, categoryIds, true);
 	product.getCategories().addAll(categories);
