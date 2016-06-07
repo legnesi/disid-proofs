@@ -103,7 +103,7 @@ NOTE: _See that is necessary to include some `@Autowired` fields to load applica
 . Use `mvn clean compile spring-boot:run` command to run the application or use STS Spring Boot plugin to do it.
 . Access to http://localhost:8080 and create some `Owner` and some `Pet`
 . Access to http://localhost:8080/services and get the `wsdl` contract URL.
-. Check the published operations with some SOAP client. (You could use the `Web Services Explorer` provided by default on STS) 
+. Check the published operations with some SOAP client. You could use the `Web Services Explorer` provided by default in the Eclipse/STS `Java EE perspective`. Go to `Run` menu and click `Launch the Web Services Explorer`.
 
 
 

@@ -33,10 +33,7 @@ privileged aspect Pet_Roo_JavaBean {
         this.weight = weight;
     }
     
-    public Owner Pet.getOwner() {
-        return this.owner;
-    }
-    
+        
     public void Pet.setOwner(Owner owner) {
         this.owner = owner;
     }

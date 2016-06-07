@@ -16,20 +16,11 @@ privileged aspect Pet_Roo_Jpa_Entity {
     
     declare @type: Pet: @Entity;
     
-    @Id
-    @SequenceGenerator(name = "petGen", sequenceName = "PET_SEQ")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "petGen")
-    @Column(name = "id")
-    private Long Pet.id;
-    
     @Version
     @Column(name = "version")
     private Integer Pet.version;
     
-    public Long Pet.getId() {
-        return this.id;
-    }
-    
+        
     public void Pet.setId(Long id) {
         this.id = id;
     }
