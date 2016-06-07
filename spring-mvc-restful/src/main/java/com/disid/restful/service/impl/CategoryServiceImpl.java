@@ -39,9 +39,16 @@ public class CategoryServiceImpl {
     }
 
     @Transactional
-    public Category addProducts(Category category, Long[] productIds) {
+    public Category addToProducts(Category category, Long... productIds) {
 	Set<Product> products = updateAndGetProducts(category, productIds, true);
 	category.getProducts().addAll(products);
+	return categoryRepository.save(category);
+    }
+
+    @Transactional
+    public Category deleteFromProducts(Category category, Long... productIds) {
+	Set<Product> products = updateAndGetProducts(category, productIds, false);
+	category.getProducts().removeAll(products);
 	return categoryRepository.save(category);
     }
 
@@ -56,13 +63,6 @@ public class CategoryServiceImpl {
 	}
 	List<Product> saved = productService.save(products);
 	return new HashSet<Product>(saved);
-    }
-
-    @Transactional
-    public Category deleteProducts(Category category, Long[] productIds) {
-	Set<Product> products = updateAndGetProducts(category, productIds, false);
-	category.getProducts().removeAll(products);
-	return categoryRepository.save(category);
     }
 
     public Set<Category> findByIdIn(Long[] categoryIds) {

@@ -57,14 +57,26 @@ public class CustomersItemOrdersController {
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Customer addOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
-	return customerService.addOrders(customer, orders);
+    public Customer addToOrders(@ModelAttribute Customer customer, @RequestBody Long order) {
+	return customerService.addToOrders(customer, order);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Customer deleteOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
-	return customerService.deleteOrders(customer, orders);
+    public Customer deleteFromOrders(@ModelAttribute Customer customer, @RequestBody Long order) {
+	return customerService.deleteFromOrders(customer, order);
+    }
+
+    @RequestMapping(value = "/batch", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Customer addToOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
+	return customerService.addToOrders(customer, orders);
+    }
+
+    @RequestMapping(value = "/batch", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Customer deleteFromOrders(@ModelAttribute Customer customer, @RequestBody Long[] orders) {
+	return customerService.deleteFromOrders(customer, orders);
     }
 
 }

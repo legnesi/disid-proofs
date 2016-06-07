@@ -39,13 +39,20 @@ public class CategoriesItemController {
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public ResponseEntity update(@Valid @RequestBody Category category, BindingResult result) {
+    public ResponseEntity<?> update(@ModelAttribute Category storedCategory, @Valid @RequestBody Category category,
+	    BindingResult result) {
         if (result.hasErrors()) {
-            return new ResponseEntity(result, HttpStatus.CONFLICT);
+	    return new ResponseEntity<BindingResult>(result, HttpStatus.CONFLICT);
         }
-        Category savedCategory = categoryService.save(category);
-        return new ResponseEntity(savedCategory, HttpStatus.OK);
+
+	if (storedCategory == null) {
+	    return new ResponseEntity<Category>(HttpStatus.NOT_FOUND);
+	}
+
+	storedCategory.setName(category.getName());
+	storedCategory.setDescription(category.getDescription());
+	Category savedCategory = categoryService.save(storedCategory);
+	return new ResponseEntity<Category>(savedCategory, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/edit-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

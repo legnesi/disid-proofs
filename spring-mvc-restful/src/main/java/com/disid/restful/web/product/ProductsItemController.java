@@ -40,11 +40,19 @@ public class ProductsItemController {
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public ResponseEntity update(@Valid @RequestBody Product product, BindingResult result) {
+    public ResponseEntity update(@ModelAttribute Product storedProduct, @Valid @RequestBody Product product,
+	    BindingResult result) {
         if (result.hasErrors()) {
             return new ResponseEntity(result, HttpStatus.CONFLICT);
         }
-        Product savedProduct = productService.save(product);
+
+	if (storedProduct == null) {
+	    return new ResponseEntity(result, HttpStatus.NOT_FOUND);
+	}
+
+	storedProduct.setDescription(product.getDescription());
+	storedProduct.setName(product.getName());
+	Product savedProduct = productService.save(storedProduct);
         return new ResponseEntity(savedProduct, HttpStatus.OK);
     }
 

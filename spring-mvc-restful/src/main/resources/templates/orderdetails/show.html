@@ -105,10 +105,10 @@
      </dl> 
      <div class="clearfix"> 
       <div class="pull-left"> 
-       <button onclick="location.href='list'" data-th-onclick="'location.href=\'' + @{/orderdetails} + '\''" type="button" class="btn btn-default"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span data-th-text="#{label_back}">Back</span> </button> 
+       <button onclick="location.href='list'" data-th-onclick="'location.href=\'' + @{/details} + '\''" type="button" class="btn btn-default"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span data-th-text="#{label_back}">Back</span> </button> 
       </div> 
       <div class="pull-right"> 
-       <button data-th-onclick="'location.href=\'' + @{/orderdetails/{id_}/edit-form(id_=*{id})} + '\''" data-sec-authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLEADO')" type="button" class="btn btn-primary" onclick="location.href='edit'" data-th-text="#{label_edit}">Edit</button> 
+       <button data-th-onclick="'location.href=\'' + @{/details/{id_}/edit-form(id_=*{id})} + '\''" data-sec-authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLEADO')" type="button" class="btn btn-primary" onclick="location.href='edit'" data-th-text="#{label_edit}">Edit</button> 
       </div> 
      </div> 
     </div> 

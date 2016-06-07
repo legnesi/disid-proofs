@@ -1,6 +1,5 @@
 package com.disid.restful.service.api;
 
-import java.util.Collection;
 import java.util.Set;
 
 import org.springframework.roo.addon.layers.service.annotations.RooService;
@@ -15,9 +14,8 @@ public interface CustomerOrderService {
 
     Set<CustomerOrder> findByIdIn(Long[] orders);
 
-    CustomerOrder setDetails(CustomerOrder customerOrder, Collection<OrderDetail> details);
+    CustomerOrder addToDetails(CustomerOrder customerOrder, OrderDetail... details);
 
-    CustomerOrder addDetails(CustomerOrder customerOrder, Collection<OrderDetail> details);
-
-    CustomerOrder deleteDetails(CustomerOrder customerOrder, Collection<OrderDetail> details);
+    CustomerOrder deleteFromDetails(CustomerOrder customerOrder, OrderDetail... details);
+    
 }

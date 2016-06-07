@@ -35,7 +35,7 @@ public class CustomerServiceImpl {
     }
 
     @Transactional
-    public Customer addOrders(Customer customer, Long[] orders) {
+    public Customer addToOrders(Customer customer, Long... orders) {
 	Set<CustomerOrder> customerOrders = updateAndGetCustomerOrders(customer, orders, true);
 	customer.getOrders().addAll(customerOrders);
 	return customerRepository.save(customer);
@@ -55,7 +55,7 @@ public class CustomerServiceImpl {
     }
 
     @Transactional
-    public Customer deleteOrders(Customer customer, Long[] orders) {
+    public Customer deleteFromOrders(Customer customer, Long... orders) {
 	Set<CustomerOrder> customerOrders = updateAndGetCustomerOrders(customer, orders, false);
 	customer.getOrders().removeAll(customerOrders);
 	return customerRepository.save(customer);

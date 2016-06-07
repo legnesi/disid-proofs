@@ -21,7 +21,7 @@ public interface ProductService {
 
     Set<Product> findByIdIn(Long[] productIds);
 
-    Product addCategories(Product product, Long[] categories);
+    Product addToCategories(Product product, Long... categories);
 
-    Product deleteCategories(Product product, Long[] categories);
+    Product deleteFromCategories(Product product, Long... categories);
 }

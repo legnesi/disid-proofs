@@ -1,11 +1,10 @@
 package com.disid.restful.service.impl;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.layers.service.annotations.RooServiceImpl;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.disid.restful.model.CustomerOrder;
 import com.disid.restful.model.OrderDetail;
@@ -38,37 +37,31 @@ public class CustomerOrderServiceImpl {
 	return customerOrderRepository.findByIdIn(orders);
     }
 
-    public CustomerOrder setDetails(CustomerOrder customerOrder, Collection<OrderDetail> details) {
-	Collection<OrderDetail> savedDetails = updateAndCreateDetails(customerOrder, details, 0);
-	customerOrder.setDetails(new HashSet<OrderDetail>(savedDetails));
-	return customerOrderRepository.save(customerOrder);
-    }
-
-    public CustomerOrder addDetails(CustomerOrder customerOrder, Collection<OrderDetail> details) {
+    @Transactional
+    public CustomerOrder addToDetails(CustomerOrder customerOrder, OrderDetail... details) {
 	Set<OrderDetail> currentDetails = customerOrder.getDetails();
-	Collection<OrderDetail> savedDetails = updateAndCreateDetails(customerOrder, details,
-		currentDetails.size() - 1);
-	currentDetails.addAll(savedDetails);
-	return customerOrderRepository.save(customerOrder);
-    }
 
-    private Collection<OrderDetail> updateAndCreateDetails(CustomerOrder customerOrder, Collection<OrderDetail> details,
-	    int initialPos) {
+	int initialPos = currentDetails.size();
 	for (OrderDetail orderDetail : details) {
 	    OrderDetailPK pk = new OrderDetailPK();
 	    pk.setId(initialPos++);
 	    pk.setCustomerOrderId(customerOrder.getId());
 	    orderDetail.setId(pk);
 	    orderDetail.setCustomerOrder(customerOrder);
+	    OrderDetail savedDetail = orderDetailService.save(orderDetail);
+	    currentDetails.add(savedDetail);
 	}
-	return orderDetailService.save(details);
+
+	return customerOrderRepository.save(customerOrder);
     }
 
-    public CustomerOrder deleteDetails(CustomerOrder customerOrder, Collection<OrderDetail> details) {
-	customerOrder.getDetails().removeAll(details);
+    @Transactional
+    public CustomerOrder deleteFromDetails(CustomerOrder customerOrder, OrderDetail... details) {
 	for (OrderDetail orderDetail : details) {
+	    customerOrder.getDetails().remove(orderDetail);
 	    orderDetailService.delete(orderDetail);
 	}
 	return customerOrderRepository.save(customerOrder);
     }
+
 }

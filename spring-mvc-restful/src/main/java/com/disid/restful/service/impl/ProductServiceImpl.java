@@ -51,7 +51,7 @@ public class ProductServiceImpl {
     }
 
     @Transactional
-    public Product addCategories(Product product, Long[] categoryIds) {
+    public Product addToCategories(Product product, Long... categoryIds) {
 	Set<Category> categories = updateAndGetCategories(product, categoryIds, true);
 	product.getCategories().addAll(categories);
 	return productRepository.save(product);
@@ -71,7 +71,7 @@ public class ProductServiceImpl {
     }
 
     @Transactional
-    public Product deleteCategories(Product product, Long[] categoryIds) {
+    public Product deleteFromCategories(Product product, Long... categoryIds) {
 	Set<Category> categories = updateAndGetCategories(product, categoryIds, false);
 	product.getCategories().removeAll(categories);
 	return productRepository.save(product);

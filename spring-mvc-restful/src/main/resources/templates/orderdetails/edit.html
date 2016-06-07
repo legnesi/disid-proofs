@@ -86,7 +86,7 @@
     <div class="container-fluid content"> 
      <h1 data-th-text="#{label_edit_entity(#{label_orderdetail})}">Edit OrderDetail</h1> 
      <!--START FORM--> 
-     <form class="form-horizontal" method="POST" data-th-object="${orderDetail}" data-th-action="@{/orderdetails/{id}(id=*{id})}"> 
+     <form class="form-horizontal" method="POST" data-th-object="${orderDetail}" data-th-action="@{/details/{id}(id=*{id})}"> 
       <input type="hidden" name="_method" value="PUT" /> 
       <fieldset> 
        <div class="form-group" data-th-classappend="${#fields.hasErrors('quantity')}? 'has-error has-feedback'"> 
@@ -124,7 +124,7 @@
         <div class="col-md-12"> 
          <div class="pull-left"> 
           <!-- TODO IE8 --> 
-          <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{/orderdetails} + '\''" data-th-text="#{label_reset}">Cancel</button> 
+          <button type="reset" class="btn btn-default" onclick="location.href='list.html'" data-th-onclick="'location.href=\'' + @{/details} + '\''" data-th-text="#{label_reset}">Cancel</button> 
          </div> 
          <div class="pull-right"> 
           <input type="submit" value="Accept" data-th-value="#{label_submit}" class="btn btn-primary" /> 

@@ -39,13 +39,22 @@ public class CustomerOrdersItemController {
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public ResponseEntity update(@Valid @RequestBody CustomerOrder customerOrder, BindingResult result) {
+    public ResponseEntity<?> update(@ModelAttribute CustomerOrder storedCustomerOrder,
+	    @Valid @RequestBody CustomerOrder customerOrder, BindingResult result) {
         if (result.hasErrors()) {
-            return new ResponseEntity(result, HttpStatus.CONFLICT);
+	    return new ResponseEntity<BindingResult>(result, HttpStatus.CONFLICT);
         }
-	CustomerOrder savedCustomerOrder = customerOrderService.save(customerOrder);
-	return new ResponseEntity(savedCustomerOrder, HttpStatus.OK);
+
+	if (storedCustomerOrder == null) {
+	    return new ResponseEntity<CustomerOrder>(HttpStatus.NOT_FOUND);
+	}
+
+	storedCustomerOrder.setOrderDate(customerOrder.getOrderDate());
+	storedCustomerOrder.setShipAddress(customerOrder.getShipAddress());
+	storedCustomerOrder.setShippedDate(customerOrder.getShippedDate());
+	storedCustomerOrder.setCustomer(customerOrder.getCustomer());
+	CustomerOrder savedCustomerOrder = customerOrderService.save(storedCustomerOrder);
+	return new ResponseEntity<CustomerOrder>(savedCustomerOrder, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/edit-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

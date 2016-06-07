@@ -58,14 +58,26 @@ public class CategoriesItemProductsController {
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Category addProducts(@ModelAttribute Category category, @RequestBody Long[] products) {
-	return categoryService.addProducts(category, products);
+    public Category addProduct(@ModelAttribute Category category, @RequestBody Long product) {
+	return categoryService.addToProducts(category, product);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    public Category deleteProduct(@ModelAttribute Category category, @RequestBody Long product) {
+	return categoryService.deleteFromProducts(category, product);
+    }
+
+    @RequestMapping(value = "/batch", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Category addProducts(@ModelAttribute Category category, @RequestBody Long[] products) {
+	return categoryService.addToProducts(category, products);
+    }
+
+    @RequestMapping(value = "/batch", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public Category deleteProducts(@ModelAttribute Category category, @RequestBody Long[] products) {
-	return categoryService.deleteProducts(category, products);
+	return categoryService.deleteFromProducts(category, products);
     }
 
 }

@@ -8,7 +8,7 @@ public interface CustomerService {
 
     void delete(Customer customer);
 
-    Customer addOrders(Customer customer, Long[] orders);
+    Customer addToOrders(Customer customer, Long... orders);
 
-    Customer deleteOrders(Customer customer, Long[] orders);
+    Customer deleteFromOrders(Customer customer, Long... orders);
 }

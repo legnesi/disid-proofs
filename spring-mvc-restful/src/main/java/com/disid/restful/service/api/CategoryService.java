@@ -15,9 +15,9 @@ public interface CategoryService {
 
     void delete(Category category);
 
-    Category addProducts(Category category, Long[] products);
+    Category addToProducts(Category category, Long... products);
 
-    Category deleteProducts(Category category, Long[] products);
+    Category deleteFromProducts(Category category, Long... products);
 
     Set<Category> findByIdIn(Long[] categoryIds);
 

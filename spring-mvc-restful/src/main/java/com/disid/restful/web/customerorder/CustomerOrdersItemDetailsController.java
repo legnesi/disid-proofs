@@ -1,7 +1,5 @@
 package com.disid.restful.web.customerorder;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,25 +60,32 @@ public class CustomerOrdersItemDetailsController {
 	return new DatatablesData<OrderDetail>(orderDetails, allAvailableOrderDetails, draw);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public CustomerOrder setOrderDetails(@ModelAttribute CustomerOrder customerOrder,
-	    @Valid @RequestBody Collection<OrderDetail> details) {
-	return customerOrderService.setDetails(customerOrder, details);
-    }
-
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CustomerOrder addOrders(@ModelAttribute CustomerOrder customerOrder,
-	    @Valid @RequestBody Collection<OrderDetail> details) {
-	return customerOrderService.addDetails(customerOrder, details);
+    public CustomerOrder addToDetails(@ModelAttribute CustomerOrder customerOrder,
+	    @Valid @RequestBody OrderDetail detail) {
+	return customerOrderService.addToDetails(customerOrder, detail);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CustomerOrder deleteOrders(@ModelAttribute CustomerOrder customerOrder,
-	    @Valid @RequestBody Collection<OrderDetail> details) {
-	return customerOrderService.deleteDetails(customerOrder, details);
+    public CustomerOrder deleteFromDetails(@ModelAttribute CustomerOrder customerOrder,
+	    @Valid @RequestBody OrderDetail detail) {
+	return customerOrderService.deleteFromDetails(customerOrder, detail);
+    }
+
+    @RequestMapping(value = "/batch", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public CustomerOrder addToDetails(@ModelAttribute CustomerOrder customerOrder,
+	    @Valid @RequestBody OrderDetail[] details) {
+	return customerOrderService.addToDetails(customerOrder, details);
+    }
+
+    @RequestMapping(value = "/batch", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public CustomerOrder deleteFromDetails(@ModelAttribute CustomerOrder customerOrder,
+	    @Valid @RequestBody OrderDetail[] details) {
+	return customerOrderService.deleteFromDetails(customerOrder, details);
     }
 
 }

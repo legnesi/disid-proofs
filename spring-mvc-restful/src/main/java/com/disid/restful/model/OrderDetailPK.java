@@ -21,4 +21,15 @@ public class OrderDetailPK implements Serializable {
 
     @Column(name = "customerOrderId")
     private Long customerOrderId;
+
+    public OrderDetailPK() {
+	// Nothing to do
+    }
+
+    public OrderDetailPK(Long customerOrderId, Integer pos) {
+	super();
+	this.id = pos;
+	this.customerOrderId = customerOrderId;
+    }
+
 }

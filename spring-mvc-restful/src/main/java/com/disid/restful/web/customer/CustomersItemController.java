@@ -39,13 +39,20 @@ public class CustomersItemController {
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public ResponseEntity update(@Valid @RequestBody Customer customer, BindingResult result) {
+    public ResponseEntity<?> update(@ModelAttribute Customer storedCustomer, @Valid @RequestBody Customer customer,
+	    BindingResult result) {
         if (result.hasErrors()) {
-            return new ResponseEntity(result, HttpStatus.CONFLICT);
+	    return new ResponseEntity<BindingResult>(result, HttpStatus.CONFLICT);
         }
-        Customer savedCustomer = customerService.save(customer);
-        return new ResponseEntity(savedCustomer, HttpStatus.OK);
+
+	if (storedCustomer == null) {
+	    return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
+	}
+
+	storedCustomer.setFirstName(customer.getFirstName());
+	storedCustomer.setLastName(customer.getLastName());
+	Customer savedCustomer = customerService.save(storedCustomer);
+	return new ResponseEntity<Customer>(savedCustomer, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/edit-form", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
