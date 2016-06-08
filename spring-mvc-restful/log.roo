@@ -89,3 +89,10 @@ push-in --class ~.repository.OrderDetailRepository
 push-in --class ~.repository.OrderDetailRepositoryImpl
 push-in --class ~.web.OrderDetailFormatter --method parse 
 // Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-06-02 17:53:00
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-06-08 13:54:26
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-06-08 13:54:28
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-06-08 13:54:28
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-06-08 13:54:28
+// Spring Roo 2.0.0.M2 [rev 003b42c] log opened at 2016-06-08 13:55:26
+push-in --class ~.repository.CategoryRepositoryImpl
+// Spring Roo 2.0.0.M2 [rev 003b42c] log closed at 2016-06-08 15:39:30
