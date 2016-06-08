@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 import org.springframework.roo.addon.javabean.annotations.RooJavaBean;
@@ -26,6 +27,6 @@ public class Category {
 
     /**
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<Product>();
 }

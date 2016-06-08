@@ -3,6 +3,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 import org.springframework.roo.addon.javabean.annotations.RooJavaBean;
@@ -29,6 +30,6 @@ public class Product {
     /**
      */
     @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products", fetch = FetchType.LAZY)
     private Set<Category> categories = new HashSet<Category>();
 }
