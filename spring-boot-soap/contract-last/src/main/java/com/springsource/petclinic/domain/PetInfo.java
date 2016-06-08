@@ -11,7 +11,7 @@ import com.springsource.petclinic.reference.PetType;
 /**
  * Data Transfer Object of Owner Entity
  */
-@XmlRootElement(name = "petInfo", namespace = "http://www.petclinic.springsource.com/")
+@XmlRootElement(name = "petInfo", namespace = "http://domain.petclinic.springsource.com/")
 @XmlType(name = "PetInfo", propOrder = {"id", "sendReminders", "name", "weight", "ownerInfo", "type"},
     namespace = "http://domain.petclinic.springsource.com/")
 @XmlAccessorType(XmlAccessType.FIELD)

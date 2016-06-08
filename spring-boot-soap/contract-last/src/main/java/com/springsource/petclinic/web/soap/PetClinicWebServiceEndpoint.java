@@ -11,23 +11,22 @@ import com.springsource.petclinic.service.api.OwnerService;
 import com.springsource.petclinic.service.api.PetService;
 
 
-public class PetClinicServiceImpl implements PetClinicService {
+public class PetClinicWebServiceEndpoint implements PetClinicWebService {
 
   private PetService petService;
   private OwnerService ownerService;
 
-  public PetClinicServiceImpl() {
+  public PetClinicWebServiceEndpoint() {
 
   }
 
-  public PetClinicServiceImpl(PetService petService, OwnerService ownerService) {
+  public PetClinicWebServiceEndpoint(PetService petService, OwnerService ownerService) {
     this.petService = petService;
     this.ownerService = ownerService;
   }
 
 
-  @Override
-  public List<PetInfo> getAllPets() {
+  public List<PetInfo> getAllPetInfos() {
     List<Pet> pets = this.petService.findAll();
     List<PetInfo> petInfo = new ArrayList<PetInfo>();
 
@@ -38,9 +37,7 @@ public class PetClinicServiceImpl implements PetClinicService {
     return petInfo;
   }
 
-
-  @Override
-  public List<OwnerInfo> getAllOwners() {
+  public List<OwnerInfo> getAllOwnerInfos() {
     List<Owner> owners = this.ownerService.findAll();
     List<OwnerInfo> ownerInfo = new ArrayList<OwnerInfo>();
 
@@ -51,7 +48,18 @@ public class PetClinicServiceImpl implements PetClinicService {
     return ownerInfo;
 
   }
-  
+
+  @Override
+  public List<Pet> getAllPets() {
+    List<Pet> pets = this.petService.findAll();
+    return pets;
+  }
+
+  public List<Owner> getAllOwners() {
+	  List<Owner> owners = this.ownerService.findAll();
+	  return owners;
+  }
+
   /**
    * Method that obtain an OwnerInfo data transfer object from
    * entity Owner.

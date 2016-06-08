@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Data Transfer Object of Owner Entity
  */
-@XmlRootElement(name = "ownerInfo", namespace = "http://www.petclinic.springsource.com/")
+@XmlRootElement(name = "ownerInfo", namespace = "http://domain.petclinic.springsource.com/")
 @XmlType(name = "OwnerInfo", propOrder = {"id", "firstName", "lastName", "address", "city", "telephone",
     "homePage", "email", "birthDay"}, namespace = "http://domain.petclinic.springsource.com/")
 @XmlAccessorType(XmlAccessType.FIELD)

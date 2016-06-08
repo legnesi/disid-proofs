@@ -15,19 +15,12 @@ privileged aspect AbstractPerson_Roo_Jpa_Entity {
     
     declare @type: AbstractPerson: @Entity;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long AbstractPerson.id;
-    
+        
     @Version
     @Column(name = "version")
     private Integer AbstractPerson.version;
     
-    public Long AbstractPerson.getId() {
-        return this.id;
-    }
-    
+        
     public void AbstractPerson.setId(Long id) {
         this.id = id;
     }

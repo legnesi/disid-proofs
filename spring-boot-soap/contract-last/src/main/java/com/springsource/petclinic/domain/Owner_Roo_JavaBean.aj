@@ -9,10 +9,7 @@ import java.util.Set;
 
 privileged aspect Owner_Roo_JavaBean {
     
-    public Set<Pet> Owner.getPets() {
-        return this.pets;
-    }
-    
+        
     public void Owner.setPets(Set<Pet> pets) {
         this.pets = pets;
     }
