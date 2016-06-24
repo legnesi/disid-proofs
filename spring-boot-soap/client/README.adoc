@@ -1,0 +1,8 @@
+= Consume SOAP service using CXF and JAXB
+
+This proof of concept is based on petclinic sample application generated using link:http://projects.spring.io/spring-roo/[Spring Roo 2.0.0.M2] version.
+
+It includes the necessary changes to show you how to configure an Spring Boot application to consume SOAP Services using Apache CXF.
+
+TODO
+
