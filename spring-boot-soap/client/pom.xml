@@ -21,6 +21,7 @@
 		<aspectj.version>1.8.8</aspectj.version>
 		<aspectj.plugin.version>1.8</aspectj.plugin.version>
 		<assertj.version>2.3.0</assertj.version>
+        <cxf.version>3.1.6</cxf.version>
 	</properties>
 
 	<dependencies>
@@ -189,6 +190,38 @@
 								</processor>
 							</processors>
 						</configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Maven plugin that will generate Java classes 
+            from WSDL files -->
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>${cxf.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                        <configuration>
+                            <sourceRoot>${basedir}/target/generated-sources/client</sourceRoot>
+                            <defaultOptions>
+                                <extendedSoapHeaders>true</extendedSoapHeaders>
+                                <autoNameResolution>true</autoNameResolution>
+                            </defaultOptions>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>http://wsf.cdyne.com/WeatherWS/Weather.asmx?wsdl</wsdl>
+                                    <packagenames>
+                                        <packagename>com.cdyne.wsf</packagename>
+                                    </packagenames>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

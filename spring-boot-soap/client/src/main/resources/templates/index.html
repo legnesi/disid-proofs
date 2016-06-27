@@ -78,7 +78,30 @@
    </header> 
    <!--Content--> 
    <section data-layout-fragment="content"> 
+   
     <div class="container content"> 
+    
+      <!-- Weather Information section -->
+      <div class="box-center" data-th-if="${weather_info != null}"> 
+        <!-- Project info --> 
+        <div class="row"> 
+         <div class="col-sm-4 col-sm-offset-1" style="text-align: center;padding:25px;"> 
+          <!-- Show image related with weather information -->
+          <img alt="${weater_info.description}" data-th-src="${weather_info_image}" src="../static/public/img/springroo-logo.png"  width="50%" /> 
+         </div> 
+         <div class="col-sm-6"> 
+          <h2>Weather information from <span data-th-text="${weather_info.city}">City</span></h2> 
+          <p><b>Description: </b><span data-th-text="${weather_info.description}">Description</span></p>
+          <p><b>Temperature: </b><span data-th-text="${weather_info.temperature}">Temperature</span>°F</p>
+          <p><b>Wind: </b><span data-th-text="${weather_info.wind}">Wind</span></p>
+          <p><b>Relative Humidity: </b><span data-th-text="${weather_info.relativeHumidity}">Relative Humidity</span></p>
+          <p><b>Pressure: </b><span data-th-text="${weather_info.pressure}">Pressure</span></p>
+         </div> 
+        </div> 
+     </div>
+     
+     <div class="clearfix">&nbsp;</div>
+     
      <div class="box-center"> 
       <!-- Project info --> 
       <div class="row"> 

@@ -3,21 +3,10 @@
 
 package com.springsource.petclinic.web;
 
-import com.springsource.petclinic.web.MainController;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 privileged aspect MainController_Roo_Thymeleaf_MainController {
     
     declare @type: MainController: @Controller;
-    
-    @RequestMapping(method = RequestMethod.GET, value = "/")
-    public String MainController.index(Model model) {
-        model.addAttribute("application_locale", LocaleContextHolder.getLocale().getLanguage());
-        return "index";
-    }
     
 }
