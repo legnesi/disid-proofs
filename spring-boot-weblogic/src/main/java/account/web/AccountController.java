@@ -20,11 +20,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -32,43 +32,44 @@ import account.domain.Account;
 import account.service.AccountService;
 
 @Controller
+@RequestMapping(value = "/accounts")
 class AccountController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AccountController.class);
 
-    @Autowired
-    protected AccountService accountService;
+	@Autowired
+	protected AccountService accountService;
 
-    /**
-     * See section `Run Tests` at README.adoc to learn how to test.
-     */
-    @RequestMapping(value="/accounts/{number}", produces="application/json")
-    @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody Account getAccount(@PathVariable String number) {
-        Account account = accountService.findOne(number);
-        LOG.info("Account found: ".concat(account.toString()));
-        return account;
-    }
+	/**
+	 * See section `Run Tests` at README.adoc to learn how to test.
+	 */
+	@RequestMapping(value = "/{number}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Account getAccount(@PathVariable String number) {
+		Account account = accountService.findOne(number);
+		LOG.info("Account found: ".concat(account.toString()));
+		return account;
+	}
 
-    /**
-     * Show index
-     */
-    @RequestMapping("/")
-    public String index() {
-        // Return the view to use for rendering the response
-        return "index";
-    }
+	/**
+	 * Show index
+	 */
+	@RequestMapping("/")
+	public String index() {
+		// Return the view to use for rendering the response
+		return "index";
+	}
 
-    /**
-     * See section `Run Tests` at README.adoc to learn how to test.
-     */
-    @RequestMapping(value="/accounts/{number}")
-    public String show(@PathVariable String number, Model model) {
-        Account account = accountService.findOne(number);
+	/**
+	 * See section `Run Tests` at README.adoc to learn how to test.
+	 */
+	@RequestMapping(value = "/{number}", produces = MediaType.TEXT_HTML_VALUE)
+	public String show(@PathVariable String number, Model model) {
+		Account account = accountService.findOne(number);
 
-        model.addAttribute( account );
+		model.addAttribute(account);
 
-        // Return the view to use for rendering the response
-        return "accounts/show";
-    }
+		// Return the view to use for rendering the response
+		return "accounts/show";
+	}
 }
