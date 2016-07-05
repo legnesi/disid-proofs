@@ -5,20 +5,6 @@ Proof of concept to test Spring Boot app deployment in Weblogic 12.2.1.
 This PoC solves the issue 
 http://stackoverflow.com/questions/34525967/spring-boot-exception-could-not-open-servletcontext-resource-web-inf-dispatch[Spring Boot exception: Could not open ServletContext resource]
 
-== Prerequisites
-
-*Spring Boot Legacy 1.0.3*
-
-Spring Boot Legacy is not deployed on Maven Central so you have build and install it in your Maven local repository.
-
-[source,bash]
-----
-$ cd SBL_DIR
-$ git clone https://github.com/scratches/spring-boot-legacy.git 
-$ cd spring-boot-legacy
-$ mvn install
-----
-
 == Setting up the build environment
 
 Clone this repository:
